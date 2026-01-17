@@ -15,9 +15,65 @@
 </head>
 <body>
     <script src="/js/header.js"></script>
+    <script src="/js/slideshow.js"></script>
+    <div class="imageslideshow" style="width: 100%;">
+        <div class="slidecontainer">
+            <a href="/blue" class="slidelink active">
+                <div class="slide active">
+                    <img src="/data/slideshow/slide1.jpg" class="slideimage">
+                    <div class="slideoverlay">
+                        <h2 class="slideheader">Header Text</h2>
+                        <p class="slidedescription">Description text goes here</p>
+                    </div>
+                </div>
+            </a>
+            <a href="/page2" class="slidelink">
+                <div class="slide">
+                    <img src="/data/slideshow/slide2.jpg" class="slideimage">
+                    <div class="slideoverlay">
+                        <h2 class="slideheader">Slide 2</h2>
+                        <p class="slidedescription">Second slide description</p>
+                    </div>
+                </div>
+            </a>
+            <a href="/page3" class="slidelink">
+                <div class="slide">
+                    <img src="/data/slideshow/slide3.jpg" class="slideimage">
+                    <div class="slideoverlay">
+                        <h2 class="slideheader">Slide 3</h2>
+                        <p class="slidedescription">Third slide description</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <button class="slidebutton prev" onclick="changeSlide(-1)">❮</button>
+        <button class="slidebutton next" onclick="changeSlide(1)">❯</button>
+        <div class="slidedots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
+    </div>
+    <div class="sponsordivider"></div>
+    <div class="sponsorsection">
+        <h2 class="sponsorheader">Our Sponsors</h2>
+        <div class="sponsorcarousel">
+            <div class="sponsorimages">
+                <img src="/data/sponsors/chinagarden.png" class="sponsorimg" alt="China Garden">
+                <img src="/data/sponsors/walmart.png" class="sponsorimg" alt="Walmart of Okemos">
+                <img src="/data/sponsor3.png" class="sponsorimg" alt="Sponsor 3">
+                <img src="/data/sponsor4.png" class="sponsorimg" alt="Sponsor 4">
+                <img src="/data/sponsor5.png" class="sponsorimg" alt="Sponsor 5">
+                <img src="/data/sponsor1.png" class="sponsorimg" alt="Sponsor 1">
+                <img src="/data/sponsor2.png" class="sponsorimg" alt="Sponsor 2">
+                <img src="/data/sponsor3.png" class="sponsorimg" alt="Sponsor 3">
+                <img src="/data/sponsor4.png" class="sponsorimg" alt="Sponsor 4">
+                <img src="/data/sponsor5.png" class="sponsorimg" alt="Sponsor 5">
+            </div>
+        </div>
+    </div>
     <div class="container" style="width: 95%;">
         <h2>H2</h2>
         <div>Text text text...</div>
     </div>
 </body>
-</html>
