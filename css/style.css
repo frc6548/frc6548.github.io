@@ -24,6 +24,10 @@ body {
     vertical-align: middle;
 }
 
+.container{
+    margin-bottom: 20px;
+}
+
 .siteicon{
     height: 80px;
     margin: 10px;
@@ -218,4 +222,84 @@ body {
 
 .whitelink{
     color: white;
+}
+
+/* Footer Styles */
+.footer {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 40px 0;
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+
+.footer-left {
+    flex: 1;
+    text-align: left;
+}
+
+.footer-left h3 {
+    margin: 0 0 15px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.footer-left p {
+    margin: 8px 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-left a {
+    color: #ff4040;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-left a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.footer-right {
+    flex: 1;
+    text-align: right;
+}
+
+.footer-right h3 {
+    margin: 0 0 15px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: #ff4040;
+    color: white;
+    border-radius: 50%;
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 2px solid #ff4040;
+}
+
+.social-icon:hover {
+    background-color: transparent;
+    transform: scale(1.1);
 }
