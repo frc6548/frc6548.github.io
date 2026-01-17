@@ -216,7 +216,7 @@ body {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-2020px);
+        transform: translateX(calc(var(--scroll-distance) * -1));
     }
 }
 
