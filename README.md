@@ -1,1 +1,2 @@
-This is a test to see if the website is accessible.
+# Perry RAMBOTS 6548
+Official website for the Perry RAMBOTS FRC team
