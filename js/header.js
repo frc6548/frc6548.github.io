@@ -8,10 +8,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
   var thetitle = document.createElement('sitetitle');
   thetitle.textContent = 'Perry RAMBOTS';
-  thetitle.style.marginLeft = "20px";
-  thetitle.style.fontSize = "80px";
-  thetitle.style.verticalAlign = "top";
-  thetitle.style.fontWeight = "bold";
+  thetitle.className = 'sitetitle';
 
   container.appendChild(icon);
   container.appendChild(thetitle);

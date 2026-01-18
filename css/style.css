@@ -22,6 +22,8 @@ body {
     color:black;
     width: 100%;
     vertical-align: middle;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .container{
@@ -31,12 +33,15 @@ body {
 .siteicon{
     height: 80px;
     margin: 10px;
+    flex-shrink: 0;
 }
 
 .sitetitle{
     font-weight: bold;
     color: black;
     font-size: 100px;
+    margin: 0;
+    white-space: nowrap;
 }
 
 .titlelink{
@@ -46,6 +51,57 @@ body {
     text-decoration: none;
     margin-left: auto;
     margin-right: 10px;
+    white-space: nowrap;
+}
+
+/* Mobile devices (up to 480px) */
+@media (max-width: 480px) {
+    .siteicon{
+        height: 40px;
+        margin: 8px;
+    }
+    
+    .sitetitle{
+        font-size: 32px;
+    }
+    
+    .titlelink{
+        font-size: 14px;
+        margin-right: 5px;
+    }
+}
+
+/* Tablets (481px to 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
+    .siteicon{
+        height: 55px;
+        margin: 8px;
+    }
+    
+    .sitetitle{
+        font-size: 55px;
+    }
+    
+    .titlelink{
+        font-size: 20px;
+        margin-right: 8px;
+    }
+}
+
+/* Small desktops (769px to 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .siteicon{
+        height: 70px;
+        margin: 10px;
+    }
+    
+    .sitetitle{
+        font-size: 70px;
+    }
+    
+    .titlelink{
+        font-size: 24px;
+    }
 }
 
 .slideimage{
