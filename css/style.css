@@ -200,7 +200,7 @@ body {
 .sponsorimages {
     display: flex;
     gap: 30px;
-    animation: scroll 10s linear infinite;
+    animation: scroll 30s linear infinite;
     padding: 0 30px;
 }
 
