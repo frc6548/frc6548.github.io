@@ -18,8 +18,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
   var link = this.document.createElement("a");
   link.className = "titlelink";
-  link.href = "https://www.google.com/link";
-  link.textContent = "Sponsors"
+  link.href = "/";
+  link.textContent = "Home"
   container.appendChild(link);
   
   document.body.insertBefore(container, document.body.firstChild);
