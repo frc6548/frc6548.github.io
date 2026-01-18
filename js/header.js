@@ -6,12 +6,22 @@ window.addEventListener('DOMContentLoaded', function () {
   icon.className = "siteicon";
   icon.src = "/data/icon.png";
 
+  var iconLink = document.createElement('a');
+  iconLink.href = "/";
+  iconLink.className = "icon-link";
+  iconLink.appendChild(icon);
+
   var thetitle = document.createElement('sitetitle');
   thetitle.textContent = 'Perry RAMBOTS';
   thetitle.className = 'sitetitle';
 
-  container.appendChild(icon);
-  container.appendChild(thetitle);
+  var titleLink = document.createElement('a');
+  titleLink.href = "/";
+  titleLink.className = "title-link";
+  titleLink.appendChild(thetitle);
+
+  container.appendChild(iconLink);
+  container.appendChild(titleLink);
 
   var link = this.document.createElement("a");
   link.className = "titlelink";
