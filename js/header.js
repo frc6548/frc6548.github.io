@@ -46,7 +46,7 @@ window.addEventListener('DOMContentLoaded', function () {
   leftSection.appendChild(emailPara);
 
   var phonePara = document.createElement('p');
-  phonePara.textContent = '(517) ###-####';
+  phonePara.textContent = 'P.O Box 78';
   leftSection.appendChild(phonePara);
 
   var addressPara = document.createElement('p');
