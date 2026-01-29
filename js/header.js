@@ -23,13 +23,60 @@ window.addEventListener('DOMContentLoaded', function () {
   container.appendChild(iconLink);
   container.appendChild(titleLink);
 
-  var link = this.document.createElement("a");
-  link.className = "titlelink";
-  link.href = "/";
-  link.textContent = "Home"
-  container.appendChild(link);
-  
+  // Create a hamburger menu with dropdown links
+  var nav = document.createElement('nav');
+  nav.className = 'site-nav';
+
+  var menuButton = document.createElement('button');
+  menuButton.className = 'menu-button';
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.setAttribute('aria-label', 'Open menu');
+  menuButton.innerHTML = '<span class="hamburger">☰</span>';
+
+  var menu = document.createElement('ul');
+  menu.className = 'menu-dropdown';
+  menu.setAttribute('role', 'menu');
+
+  var items = [
+    { text: 'Home', href: '/' },
+    { text: 'Sponsor Form', href: '/data/sponsors/form.pdf' },
+    { text: 'The Blue Alliance', href: 'https://www.thebluealliance.com/team/6548', target: '_blank' }
+  ];
+
+  items.forEach(function(it) {
+    var li = document.createElement('li');
+    li.className = 'menu-item';
+    var a = document.createElement('a');
+    a.textContent = it.text;
+    a.href = it.href;
+    a.setAttribute('role', 'menuitem');
+    if (it.target) a.target = it.target;
+    a.className = 'menu-link';
+    li.appendChild(a);
+    menu.appendChild(li);
+  });
+
+  nav.appendChild(menuButton);
+  nav.appendChild(menu);
+  container.appendChild(nav);
+
+  // Insert header container at top of body
   document.body.insertBefore(container, document.body.firstChild);
+
+  // Toggle menu open/close
+  menuButton.addEventListener('click', function(e) {
+    var opened = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', String(!opened));
+    menu.classList.toggle('open');
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!nav.contains(e.target)) {
+      menu.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }
+  });
 
   var footer = document.createElement('footer');
   footer.className = 'footer';

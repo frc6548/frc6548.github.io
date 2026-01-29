@@ -22,7 +22,7 @@ body {
     color:black;
     width: 100%;
     vertical-align: middle;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 10px;
 }
 
@@ -41,6 +41,19 @@ body {
     height: 80px;
     margin: 10px;
     flex-shrink: 0;
+}
+
+/* Allow title to shrink so the hamburger doesn't wrap to next line */
+.sitetitle{
+    font-weight: bold;
+    color: black;
+    font-size: 100px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 .sitetitle{
@@ -67,6 +80,84 @@ body {
     margin-left: auto;
     margin-right: 10px;
     white-space: nowrap;
+}
+
+/* Hamburger menu styles */
+.site-nav{
+    margin-left: auto;
+    margin-right: 10px;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.menu-button{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: black;
+    /* Match the site icon vertical size and padding */
+    height: 80px;
+    margin: 10px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.menu-button .hamburger{
+    /* scale hamburger visually to fill the button height */
+    font-size: 48px;
+    line-height: 1;
+}
+
+.menu-button:focus{
+    outline: 2px solid rgba(0,0,0,0.2);
+}
+
+.menu-dropdown{
+    list-style: none;
+    margin: 6px 0 0 0;
+    padding: 8px 0;
+    position: absolute;
+    right: 0;
+    background: white;
+    color: black;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    min-width: 160px;
+    display: none;
+    border-radius: 4px;
+    z-index: 2000;
+}
+
+.menu-dropdown.open{
+    display: block;
+}
+
+.menu-item{
+    padding: 6px 14px;
+}
+
+.menu-link{
+    text-decoration: none;
+    color: black;
+    display: block;
+    width: 100%;
+}
+
+.menu-link:hover{
+    background: rgba(0,0,0,0.04);
+}
+
+/* Make sure hamburger is usable on small screens */
+@media (max-width: 480px) {
+    .menu-button{ 
+        height: 40px;
+        margin: 8px;
+        padding: 0 10px;
+    }
+    .menu-button .hamburger{ font-size: 28px; }
 }
 
 /* Mobile devices (up to 480px) */
@@ -101,6 +192,11 @@ body {
         font-size: 20px;
         margin-right: 8px;
     }
+    .menu-button{
+        height: 55px;
+        margin: 8px;
+    }
+    .menu-button .hamburger{ font-size: 34px; }
 }
 
 /* Small desktops (769px to 1024px) */
@@ -117,6 +213,11 @@ body {
     .titlelink{
         font-size: 24px;
     }
+    .menu-button{
+        height: 70px;
+        margin: 10px;
+    }
+    .menu-button .hamburger{ font-size: 42px; }
 }
 
 .slideimage{
