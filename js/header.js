@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', function () {
   leftSection.appendChild(contactTitle);
 
   var emailPara = document.createElement('p');
-  emailPara.innerHTML = '<a href="mailto:##@##.org">##@##.org</a>';
+  emailPara.innerHTML = '<a href="mailto:admin@phsrambots.org">admin@phsrambots.org</a>';
   leftSection.appendChild(emailPara);
 
   var phonePara = document.createElement('p');
@@ -50,7 +50,7 @@ window.addEventListener('DOMContentLoaded', function () {
   leftSection.appendChild(phonePara);
 
   var addressPara = document.createElement('p');
-  addressPara.textContent = 'Perry, Michigan';
+  addressPara.textContent = 'Perry, Michigan 48872';
   leftSection.appendChild(addressPara);
 
   footer.appendChild(leftSection);
