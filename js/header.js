@@ -67,9 +67,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
   var socials = [
     { name: 'YouTube', icon: '/data/icons/youtube.png', url: 'https://www.youtube.com/@PHSRambots' },
+    { name: 'TikTok', icon: '/data/icons/tiktok.png', url: 'https://www.tiktok.com/@phsrambots' },
     { name: 'Instagram', icon: '/data/icons/instagram.png', url: 'https://www.instagram.com/rambots_6548' },
-    { name: 'Facebook', icon: '/data/icons/facebook.png', url: 'https://www.facebook.com/groups/PerryRambots' },
-    { name: 'Facebook', icon: '/data/icons/github.png', url: 'https://github.com/frc6548' }
+    { name: 'Facebook', icon: '/data/icons/facebook.png', url: 'https://www.facebook.com/profile.php?id=61584655984461' },
+    { name: 'GitHub', icon: '/data/icons/github.png', url: 'https://github.com/frc6548' }
   ];
 
   socials.forEach(function(social) {
