@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Perry RAMBOTS</title>
+    <meta content="Perry RAMBOTS" property="og:title"/>
+    <meta content="FRC Team 6548: Perry RAMBOTS" property="og:description"/>
+    <meta content="https://frc6548.github.io/data/icon-white.png" property="og:image"/>
+    <meta content="#ff4040" data-react-helmet="true" name="theme-color"/>
+    
+    <link rel="icon" type="image/png" href="/data/icon-white.png">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <script src="/js/header.js"></script>
+    <div class="container" style="width: 95%;">
+        <h2>Donations</h2>
+        <div>We are grateful for all of our sponsors and donors who support our team. If you would like to make a donation but can't use our linked services, please contact us at admin@phsrambots.org.</div>
+    </div>
+    <div class="sponsordivider"></div>
+    <div class="sponsorsection">
+        <h2 class="sponsorheader" style="margin-bottom: 0;">PayPal</h2>
+        <div class="sponsorheader" style="font-size: 20px;font-weight: normal;margin-bottom: 25px;"><a href="https://www.paypal.com/ncp/pament/CSJ9MRPXZYJ3Y/">PayPal Donation Link</a></div>
+        <div class="donatesidebyside">
+            <img class="qr" src="/data/donate/paypal-qr.png" alt="PayPal QR code">
+            <div id="donate-button-container">
+                <div id="donate-button"></div>
+                <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+                <script>
+                PayPal.Donation.Button({
+                env:'production',
+                hosted_button_id:'K9C94VBN4D8HG',
+                image: {
+                src:'/data/donate/paypal-db.png',
+                alt:'Donate with PayPal button',
+                title:'PayPal - The safer, easier way to pay online!',
+                }
+                }).render('#donate-button');
+                </script>
+                </div>
+        </div>
+    </div>
+</body>

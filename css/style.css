@@ -43,6 +43,10 @@ body {
     flex-shrink: 0;
 }
 
+a {
+    color: #aa2323;
+}
+
 /* Allow title to shrink so the hamburger doesn't wrap to next line */
 .sitetitle{
     font-weight: bold;
@@ -495,4 +499,41 @@ body {
 .social-icon:hover {
     background-color: transparent;
     transform: scale(1.1);
+}
+
+/* Donation QR and button side-by-side layout */
+.donatesidebyside{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+.donatesidebyside img.qr{
+    width: 200px;
+    max-width: 40%;
+    height: auto;
+    display: block;
+}
+
+#donate-button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+}
+
+/* Ensure PayPal SDK image keeps its native size inside the container */
+#donate-button-container img{
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+}
+@media (max-width: 600px){
+    .donatesidebyside{
+        flex-direction: column;
+        gap: 12px;
+    }
+    .donatesidebyside img.qr{ max-width: 60%; }
+    #donate-button-container{ min-width: auto; }
 }
