@@ -537,3 +537,71 @@ a {
     .donatesidebyside img.qr{ max-width: 60%; }
     #donate-button-container{ min-width: auto; }
 }
+
+/* QR Grid for social follow links */
+.qr-section {
+    max-width: 1000px;
+    margin: 16px auto 48px auto;
+    padding: 12px;
+}
+.qr-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    align-items: start;
+    justify-items: center;
+    margin-top: 12px;
+}
+.qr-item{
+    text-align: center;
+    color: white;
+}
+.qr-img{
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    background: white;
+    padding: 6px;
+    border-radius: 8px;
+}
+.qr-label{
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+@media (max-width: 420px){
+    .qr-img{ width: 140px; height: 140px; }
+}
+
+/* Logo overlays on QR codes */
+.qr-item{ position: relative; }
+.qr-wrap{ position: relative; display: inline-block; }
+.qr-logo-bg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    z-index: 2;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.qr-logo-bg img{
+    display: block;
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    filter: grayscale(1) brightness(0);
+}
+
+@media (max-width: 420px){
+    .qr-logo-bg{ width: 40px; height: 40px; }
+    .qr-logo-bg img{ width: 36px; height: 36px; }
+}
