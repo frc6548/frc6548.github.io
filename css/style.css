@@ -238,6 +238,115 @@ a {
     overflow: hidden;
 }
 
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    align-items: start;
+}
+
+.photo-card {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 120ms ease, background 120ms ease;
+}
+
+.photo-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.photo-thumb {
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.photo-caption {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+    word-break: break-word;
+}
+
+.load-more {
+    display: block;
+    margin: 18px auto 8px;
+    padding: 10px 18px;
+    background: rgba(255, 255, 255, 0.18);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.load-more:hover {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 1.2rem;
+    z-index: 9999;
+}
+
+.lightbox-overlay.open {
+    display: flex;
+}
+
+.lightbox-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    position: relative;
+}
+
+.lightbox-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+.lightbox-caption {
+    margin-top: 10px;
+    text-align: center;
+    color: white;
+    font-size: 0.95rem;
+    word-break: break-word;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: white;
+    font-size: 1.6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-close:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
 .slide {
     position: absolute;
     width: 100%;

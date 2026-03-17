@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Perry RAMBOTS</title>
+    <meta content="Perry RAMBOTS" property="og:title" />
+    <meta content="FRC Team 6548: Perry RAMBOTS" property="og:description" />
+    <meta content="https://frc6548.github.io/data/icon-white.png" property="og:image" />
+    <meta content="#ff4040" data-react-helmet="true" name="theme-color" />
+
+    <link rel="icon" type="image/png" href="/data/icon-white.png">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <script src="/js/header.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            const photosId = document.getElementById('photos');
+            photosId.textContent = '';
+            photosId.classList.add('photo-grid');
+
+            const lightboxOverlay = createLightboxOverlay();
+            document.body.appendChild(lightboxOverlay);
+
+            const lazyObserver = ('IntersectionObserver' in window)
+                ? new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) return;
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                        }
+                        lazyObserver.unobserve(img);
+                    });
+                }, { rootMargin: '200px' })
+                : null;
+
+            function observeLazyImage(img) {
+                if (!lazyObserver) {
+                    img.src = img.dataset.src;
+                    return;
+                }
+                lazyObserver.observe(img);
+            }
+
+            function createLightboxOverlay() {
+                const overlay = document.createElement('div');
+                overlay.className = 'lightbox-overlay';
+                overlay.addEventListener('click', () => hideLightbox(overlay));
+                overlay.setAttribute('aria-hidden', 'true');
+
+                const content = document.createElement('div');
+                content.className = 'lightbox-content';
+                content.addEventListener('click', (event) => event.stopPropagation());
+
+                const closeButton = document.createElement('button');
+                closeButton.className = 'lightbox-close';
+                closeButton.type = 'button';
+                closeButton.textContent = '×';
+                closeButton.addEventListener('click', () => hideLightbox(overlay));
+
+                const image = document.createElement('img');
+                image.alt = '';
+
+                const caption = document.createElement('div');
+                caption.className = 'lightbox-caption';
+
+                content.appendChild(closeButton);
+                content.appendChild(image);
+                content.appendChild(caption);
+                overlay.appendChild(content);
+
+                return overlay;
+            }
+
+            function showLightbox(file) {
+                const image = lightboxOverlay.querySelector('img');
+                const caption = lightboxOverlay.querySelector('.lightbox-caption');
+
+                image.src = file.download_url;
+                image.alt = file.name;
+                caption.textContent = file.name;
+
+                lightboxOverlay.classList.add('open');
+                lightboxOverlay.setAttribute('aria-hidden', 'false');
+            }
+
+            function hideLightbox(overlay) {
+                overlay.classList.remove('open');
+                overlay.setAttribute('aria-hidden', 'true');
+                const image = overlay.querySelector('img');
+                if (image) image.src = '';
+            }
+
+            function createPhotoCard(file) {
+                const card = document.createElement('div');
+                card.className = 'photo-card';
+
+                const img = document.createElement('img');
+                img.className = 'photo-thumb';
+                img.alt = file.name;
+                img.dataset.src = file.download_url;
+                img.loading = 'lazy';
+                img.addEventListener('click', () => showLightbox(file));
+
+                const caption = document.createElement('div');
+                caption.className = 'photo-caption';
+                caption.textContent = file.name;
+
+                card.appendChild(img);
+                card.appendChild(caption);
+
+                observeLazyImage(img);
+                return card;
+            }
+
+            fetch('https://api.github.com/repos/frc6548/phsrambots.org/contents/data/gallery')
+                .then(response => response.json())
+                .then(data => {
+                    const files = Array.isArray(data)
+                        ? data.filter(file => file.type === 'file' && /\.(jpe?g|png|gif|webp)$/i.test(file.name))
+                        : [];
+
+                    if (!files.length) {
+                        photosId.textContent = 'No photos found.';
+                        return;
+                    }
+
+                    let index = 0;
+                    const batchSize = 20;
+
+                    const loadMoreBtn = document.createElement('button');
+                    loadMoreBtn.className = 'load-more';
+                    loadMoreBtn.type = 'button';
+                    loadMoreBtn.textContent = 'Load more';
+                    loadMoreBtn.addEventListener('click', loadNextBatch);
+
+                    function loadNextBatch() {
+                        const end = Math.min(index + batchSize, files.length);
+                        for (; index < end; index++) {
+                            photosId.appendChild(createPhotoCard(files[index]));
+                        }
+
+                        if (index >= files.length) {
+                            loadMoreBtn.style.display = 'none';
+                        } else {
+                            loadMoreBtn.style.display = 'block';
+                        }
+                    }
+
+                    photosId.after(loadMoreBtn);
+                    loadNextBatch();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    photosId.textContent = 'Error loading photos.';
+                });
+        });
+    </script>
+    <div class="container" style="width: 95%;">
+        <h1 class="superh1">Photo Gallery</h1>
+        <br>
+        <div class="divider"></div><br>
+        <div id="photos">
+            Loading
+        </div>
+    </div>
+</body>
