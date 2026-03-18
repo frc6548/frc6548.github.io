@@ -362,6 +362,58 @@ a {
     text-align: center;
 }
 
+/* Calendar widget styles */
+.calendar-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin: 8px 0 12px 0;
+}
+.calendar-header button{
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: Afacad;
+}
+.calendar-title{ font-size: 22px; font-weight: 700; }
+.calendar-controls{ display:flex; gap:8px; align-items:center; margin-bottom:10px; }
+.calendar-controls select, .calendar-controls button{ padding:6px 8px; border-radius:6px; border:1px solid rgba(255,255,255,0.12); font-family: Afacad; font-size: 14px }
+.calendar-controls select{ background: rgba(0,0,0,0.18); color: white; appearance: none; -webkit-appearance: none; }
+.calendar-controls select:focus, .calendar-controls select:active{ background: white; color: #111; outline: 2px solid rgba(0,0,0,0.12); }
+.calendar-controls button{ background: rgba(0,0,0,0.18); color: white }
+
+/* Improve option contrast where supported */
+.calendar-controls select option{ background: white; color: #111 }
+.calendar-grid{ width:100%; background: rgba(0,0,0,0.06); padding:10px; border-radius:8px; font-family: Afacad }
+.cal-weekdays{ display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; margin-bottom:6px }
+.cal-weekday{ text-align:center; font-weight:700; color: rgba(255,255,255,0.9); }
+.cal-cells{ display:grid; grid-template-columns: repeat(7, 1fr); gap:8px }
+.cal-cell{ min-height: 90px; background: rgba(255,255,255,0.02); border-radius:6px; padding:8px; position:relative; cursor:pointer; box-sizing: border-box; overflow: hidden }
+.cal-cell.cal-empty{ background: transparent; cursor: default; }
+.cal-date{ font-weight:700; margin-bottom:6px }
+.event-list{ display:flex; flex-direction:column; gap:6px; max-height: calc(100% - 26px); overflow:auto }
+.event-badge{ background: rgba(255,255,255,0.12); color: white; border: none; padding:6px 8px; border-radius:6px; text-align:left; cursor:pointer; display:block; max-width:100%; box-sizing:border-box; font-family: Afacad; font-size: 13px; line-height:1.2; white-space:normal; overflow-wrap:anywhere; word-break:break-word }
+.more-count{ color: rgba(255,255,255,0.6); font-size:0.9rem }
+
+.event-modal{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background: rgba(0,0,0,0.6); z-index:9999 }
+.event-modal.open{ display:flex }
+.event-modal-content{ background: #1b1b1b; color: white; padding:18px; border-radius:10px; max-width:720px; width:94%; max-height:90vh; overflow:auto; position:relative; font-family: Afacad }
+.modal-close{ position:absolute; right:8px; top:8px; border:none; background:transparent; color:white; font-size:18px; cursor:pointer }
+.ev-wrap{ border-top:1px solid rgba(255,255,255,0.04); padding-top:12px; margin-top:12px }
+.ev-title{ font-weight:700; font-size:18px }
+.ev-time, .ev-loc{ color: rgba(255,255,255,0.75); margin-top:6px }
+.ev-desc{ margin-top:8px; color: rgba(255,255,255,0.9) }
+.gc-btn{ display:inline-block; margin-top:8px; padding:6px 10px; background: rgba(255,255,255,0.08); color:white; border-radius:6px; text-decoration:none }
+
+@media (max-width:480px){
+    .cal-cell{ min-height:72px; padding:6px }
+    .calendar-title{ font-size:18px }
+}
+
 .centerphoto{
     display: block;
     margin-left: auto;

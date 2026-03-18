@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Perry RAMBOTS</title>
+    <meta content="Perry RAMBOTS" property="og:title"/>
+    <meta content="FRC Team 6548: Perry RAMBOTS" property="og:description"/>
+    <meta content="https://frc6548.github.io/data/icon-white.png" property="og:image"/>
+    <meta content="#ff4040" data-react-helmet="true" name="theme-color"/>
+    
+    <link rel="icon" type="image/png" href="/data/icon-white.png">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <script src="/js/header.js"></script>
+    <div class="container" style="width: 95%;">
+         <h1 class="superh1">Event Calendar</h1>
+        <div class="divider"></div><br>
+        <div id="calendar-app">
+            <div class="calendar-header">
+                <button id="prev-month" aria-label="Previous month">◀</button>
+                <div class="calendar-title" id="calendar-title">March 2026</div>
+                <button id="next-month" aria-label="Next month">▶</button>
+            </div>
+
+            <div class="calendar-controls">
+                <select id="year-select"></select>
+                <select id="month-select"></select>
+                <button id="load-month">Load</button>
+            </div>
+
+            <div class="calendar-grid" id="calendar-grid" role="grid" aria-label="Event calendar"></div>
+
+            <div id="event-modal" class="event-modal" role="dialog" aria-hidden="true">
+                <div class="event-modal-content">
+                    <button class="modal-close" id="modal-close">✖</button>
+                    <div id="modal-body"></div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script src="/js/calendar.js"></script>
+</body>
