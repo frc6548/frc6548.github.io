@@ -26,6 +26,8 @@ body {
     gap: 10px;
 }
 
+.hd-container{ position: relative; z-index: 110000; }
+
 .container{
     margin-bottom: 20px;
 }
@@ -132,7 +134,7 @@ a {
     min-width: 160px;
     display: none;
     border-radius: 4px;
-    z-index: 2000;
+    z-index: 110002;
 }
 
 .menu-dropdown.open{
