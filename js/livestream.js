@@ -37,7 +37,7 @@
     // choose embed URL
     if(cfg['stream-type'] === 'twitch'){
       const channel = cfg.channel || cfg.channelName || '';
-      const parent = window.location.hostname || 'frc6548.github.io';
+      const parent = window.location.hostname || 'phsrambots.org';
       iframe.src = `https://player.twitch.tv/?channel=${encodeURIComponent(channel)}&parent=${encodeURIComponent(parent)}&autoplay=false`;
     } else if(cfg['stream-type'] === 'youtube'){
       // prefer explicit video id (video, videoId, video_id) then fall back to channel live stream
