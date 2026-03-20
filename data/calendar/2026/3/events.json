@@ -1,13 +1,5 @@
 [
   {
-    "id": "bs-district",
-    "title": "Berrien Springs District Event (Hotel: Spark by Hilton Stevensville)",
-    "date": "2026-03-20",
-    "endDate": "2026-03-22",
-    "location": "Spark by Hilton Stevensville, 5050 Red Arrow Hwy, Stevensville, MI",
-    "description": "District event spanning March 20-22. See daily schedule entries for specific times. Everyone is required to stay until we are unpacked back at the school after returning home."
-  },
-  {
     "id": "bs-fri-leave",
     "title": "Leave class for A lunch / Load robot and pit items",
     "date": "2026-03-20",
@@ -90,15 +82,6 @@
     "note": "Pits close ~20:00 (subject to change)"
   },
   {
-    "id": "bs-sun-checkout",
-    "title": "Check out of Hotel",
-    "date": "2026-03-22",
-    "start": "08:00",
-    "end": "09:00",
-    "location": "Spark by Hilton Stevensville, 5050 Red Arrow Hwy, Stevensville, MI",
-    "description": "Team checks out of hotel and prepares for the day."
-  },
-  {
     "id": "bs-sun-pits-open",
     "title": "Pits Open",
     "date": "2026-03-22",
@@ -160,12 +143,5 @@
     "end": "17:30",
     "location": "Berrien Springs Event Venue",
     "description": "Awards ceremony. Pits close ~18:30 (subject to change). After awards, drive home and unpack at the robotics room — everyone required to stay until unpacked."
-  },
-  {
-    "id": "bs-hotel-rooms",
-    "title": "Hotel Rooms Assigned (Berrien Springs)",
-    "date": "2026-03-20",
-    "location": "Spark by Hilton Stevensville, 5050 Red Arrow Hwy, Stevensville, MI",
-    "description": "Room assignments:\n- Chase, Lucas R.\n- Grayson, Colton, Bayze\n- Saige, Adah, Kaylee, Eliza\n- Cole & Decator\n- Lucas & Nicolas\n- Collin\n- Logan\n- Landyn & Elayna (room reserved and paid for already)"
   }
 ]
