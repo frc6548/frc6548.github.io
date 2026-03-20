@@ -414,6 +414,24 @@ a {
     .calendar-title{ font-size:18px }
 }
 
+/* Livestream styles */
+.livestream-container{ width:100%; background: #000; color: white; margin-top:5px; margin-bottom:5px; position:relative; border-radius:8px; overflow: visible; display:block; z-index:99999 }
+.livestream-bar{ display:flex; align-items:center; gap:10px; padding:8px 12px; background: #000; }
+.livestream-bar{ justify-content:center }
+.livestream-bar .live-dot{ width:12px; height:12px; background: #ff3b30; border-radius:50%; box-shadow: 0 0 6px rgba(255,59,48,0.9); display:inline-block; margin-right:8px }
+.livestream-bar .live-text{ font-weight:700; color:white; text-align:center }
+.livestream-embed-wrap{ background:#000; width:70%; margin:5px auto }
+.livestream-iframe{ width:100%; display:block }
+.livestream-toggle{ position:absolute; right:8px; bottom:8px; background: rgba(255,255,255,0.08); color:white; border: none; padding:6px 8px; border-radius:6px; cursor:pointer }
+.livestream-container.minimized .livestream-embed-wrap{ display:none }
+.livestream-container.minimized .livestream-toggle{ right:8px; bottom:8px }
+
+@media (max-width:600px){
+    .livestream-bar{ padding:6px 8px }
+    .livestream-bar .live-text{ font-size:14px }
+    .livestream-toggle{ padding:5px 7px }
+}
+
 .centerphoto{
     display: block;
     margin-left: auto;
