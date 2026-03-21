@@ -42,6 +42,7 @@ window.addEventListener('DOMContentLoaded', function () {
     { text: 'Calendar', href: '/calendar' },
     { text: 'Gallery', href: '/gallery' },
     { text: 'Donations', href: '/donate' },
+    { text: 'Links', href: '/links' },
     { text: 'Sponsor Form', href: '/data/sponsors/form.pdf' },
     { text: 'The Blue Alliance', href: 'https://www.thebluealliance.com/team/6548', target: '_blank' }
   ];
