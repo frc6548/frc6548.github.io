@@ -12,7 +12,8 @@ window.addEventListener('DOMContentLoaded', function () {
   iconLink.className = "icon-link";
   iconLink.appendChild(icon);
 
-  var thetitle = document.createElement('sitetitle');
+  var thetitle = document.createElement('h1');
+  thetitle.class = "sitetitle";
   thetitle.textContent = 'Perry RAMBOTS';
   thetitle.className = 'sitetitle';
 
