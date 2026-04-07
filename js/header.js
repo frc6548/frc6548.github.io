@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', function () {
   var icon = document.createElement('img');
   icon.className = "siteicon";
   icon.src = "/data/icon.png";
+  icon.alt = "Perry RAMBOTS Logo";
 
   var iconLink = document.createElement('a');
   iconLink.href = "/";
