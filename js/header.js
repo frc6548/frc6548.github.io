@@ -161,7 +161,7 @@ window.addEventListener('DOMContentLoaded', function () {
   // Add Perry High School location with a maps link
   var schoolPara = document.createElement('p');
   var schoolLink = document.createElement('a');
-  schoolLink.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Perry High School, Perry, MI');
+  schoolLink.href = 'https://perry.k12.mi.us/';
   schoolLink.target = '_blank';
   schoolLink.rel = 'noopener';
   schoolLink.textContent = 'Perry High School';
