@@ -1,4 +1,4 @@
-// livestream.js — reads /data/livestream.json and inserts a LIVE embed above slideshow
+// livestream.js - reads /data/livestream.json and inserts a LIVE embed above slideshow
 (function(){
   async function init(){
     let cfg = null;
@@ -51,7 +51,7 @@
         iframe.src = `https://www.youtube.com/embed?autoplay=0`;
       }
     } else {
-      // unsupported type — bail
+      // unsupported type - bail
       return;
     }
 

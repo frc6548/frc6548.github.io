@@ -18,44 +18,15 @@
     
     <link rel="stylesheet" href="/css/style.css">
 
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Perry RAMBOTS",
-  "alternateName": "FRC Team 6548",
-  "url": "https://phsrambots.org",
-  "logo": "https://phsrambots.org/logo.png",
-  "description": "Perry RAMBOTS is FIRST Robotics Competition Team 6548, a high school robotics team building competitive robots, developing STEM skills, and competing since 2017.",
-  "foundingDate": "2017",
-  "sameAs": [
-    "https://www.thebluealliance.com/team/6548"
-  ],
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Perry",
-    "addressRegion": "MI",
-    "addressCountry": "US"
-  }
-}
-</script>
+        <!-- structured data (Organization, WebSite, LocalBusiness) injected by /js/header.js -->
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Perry RAMBOTS",
-  "url": "https://phsrambots.org"
-}
-</script>
-
-</head>
+    </head>
 <body>
     <script src="/js/header.js"></script>
     <script src="/js/livestream.js"></script>
     <script src="/js/slideshow.js"></script>
     <script src="/js/sponsors.js"></script>
-    <div class="imageslideshow" style="width: 100%;">
+    <div class="imageslideshow">
         <div class="slidecontainer">
             <a href="https://www.thebluealliance.com/team/6548" class="slidelink active">
                 <div class="slide active">
@@ -93,6 +64,15 @@
                     </div>
                 </div>
             </a>
+            <a href="https://www.youtube.com/@PHSRambots" class="slidelink">
+                <div class="slide">
+                    <img src="/data/slideshow/slide1.jpg" alt="YouTube Channel" class="slideimage">
+                    <div class="slideoverlay">
+                        <h2 class="slideheader">YouTube Channel</h2>
+                        <p class="slidedescription">Subscribe to our YouTube channel for match videos and highlights</p>
+                    </div>
+                </div>
+            </a>
         </div>
         <button class="slidebutton prev" onclick="changeSlide(-1)">❮</button>
         <button class="slidebutton next" onclick="changeSlide(1)">❯</button>
@@ -101,16 +81,17 @@
             <span class="dot" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
         </div>
     </div>
-    <div class="container" style="width: 95%;">
+    <div class="container">
         <h2>About Us</h2>
         <div>We are the Perry RAMBOTS, FRC Team 6548. Our team was established in 2017, and have since qualified and attended the World competition 4 times. Our rookie team consisted of 8 members, one coach and a couple of mentors, attending the World competition in St. Louis Missouri. We have since grown to be a team with 21 7th - 12th graders who work dilligently as a team and with the community. We support the enviroment by recycling pop cans and returning scrap metal all to raise funds for our travel and robot expenses. Though we raise a lot of funds through fundraising we are lucky to be in a community that supports our dreams every year and we are ever grateful for each and every one of our business and individual sponsors. Our community outreach consists of free movie nights in our High School auditorium, bottle drives, family fun festivals, volunteering at the local VFW hall and inviting other local team to workshops and events. </div>
     </div>
     <div class="sponsordivider"></div>
     <div class="sponsorsection">
-        <h2 class="sponsorheader" style="margin-bottom: 0;">Our Sponsors</h2>
-        <div class="sponsorheader" style="font-size: 20px;font-weight: normal;margin-bottom: 25px;">Thank you to all of our sponsors for making our season possible!</div>
+        <h2 class="sponsorheader no-margin">Our Sponsors</h2>
+        <div class="sponsor-subtitle">Thank you to all of our sponsors for making our season possible!</div>
         <div class="sponsorcarousel">
             <div class="sponsorimages">
                 <img src="/data/sponsors/chinagarden.png" class="sponsorimg" alt="China Garden">
@@ -147,7 +128,7 @@
             </div>
         </div>
     </div>
-    <div class="container" style="width: 95%;">
+    <div class="container">
     <h2>History</h2>
     <div>
         Since 2017, we have been working hard to build robots and compete in competitions. We qualified for the World Championship our rookie year, and more recently last year in 2025. We plan on attending again this year for our fourth time. Over the years, our team has consistently grown in both size and skill, developing strong capabilities in design, programming, and manufacturing. 

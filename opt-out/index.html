@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Opt-out of tracking - Perry RAMBOTS</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body{ background:#ff4040; color:#fff; font-family: Afacad, Arial, sans-serif; }
+    .optbox{ max-width:700px; margin:80px auto; background:#fff; color:#111; padding:20px; border-radius:8px }
+    .optbox h1{ margin-top:0 }
+    .opt-actions{ margin-top:12px }
+    .opt-actions button{ margin-right:8px }
+  </style>
+</head>
+<body>
+    <script src="/js/header.js"></script>
+  <div class="optbox">
+    <h1>Opt out of tracking</h1>
+    <p>To opt out of analytics and tracking, click <strong>Opt Out</strong>. This will set a cookie named <code>OptOutTrack</code> with value <code>1</code> for this site and prevent analytic scripts from loading.</p>
+    <div class="opt-actions">
+      <button id="optout" class="privacy-close">Opt Out</button>
+      <button id="undo" class="privacy-close">Undo Opt Out</button>
+    </div>
+    <p id="status" style="margin-top:12px"></p>
+  </div>
+
+  <script>
+    function setOptOut(val){
+      var d = new Date();
+      d.setFullYear(d.getFullYear()+1);
+      document.cookie = 'OptOutTrack=' + (val? '1' : '0') + '; path=/; expires=' + d.toUTCString();
+    }
+    function getCookie(name){
+      var v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+      return v ? v.pop() : '';
+    }
+    document.getElementById('optout').addEventListener('click', function(){
+      setOptOut(true);
+      document.getElementById('status').textContent = 'You are opted out. The OptOutTrack cookie has been set.';
+    });
+    document.getElementById('undo').addEventListener('click', function(){
+      // remove cookie by setting expiry in past
+      document.cookie = 'OptOutTrack=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+      document.getElementById('status').textContent = 'Opt-out removed. Tracking may resume on next page load.';
+    });
+    // show current status on load
+    window.addEventListener('DOMContentLoaded', function(){
+      var val = getCookie('OptOutTrack');
+      if(val === '1') document.getElementById('status').textContent = 'Currently opted out.';
+      else document.getElementById('status').textContent = 'Currently not opted out.';
+    });
+  </script>
+</body>
+</html>

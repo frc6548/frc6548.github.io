@@ -1,0 +1,24 @@
+Perry RAMBOTS Privacy Policy
+
+Last updated: 2026-04-07
+
+This site uses analytics tools to collect aggregated usage data for site improvements. The tools currently referenced on this site are Google Analytics. These tools collect anonymous or pseudonymous information such as page views, device/browser information, and aggregated event counts. The site itself does not collect personally-identifiable information (PII).
+
+How the data is used:
+- To measure site traffic and performance
+- To understand which content performs best for visitors
+- To improve accessibility and load performance
+
+Opt-out (GDPR / privacy):
+- If you are subject to GDPR or otherwise wish to opt out of tracking, visit https://phsrambots.org/opt-out. Visiting that page will set a persistent cookie named `OptOutTrack` with value `1` which prevents the site from loading analytic scripts. The cookie is set for the entire site (`path=/`) and will remain for approximately one year unless removed.
+
+Cookies and consent:
+- Analytics tools may set cookies in visitors' browsers. If you are required to obtain consent (e.g., GDPR), you should provide a consent banner that defers loading analytics until consent is granted. This repository does not include a full consent manager by default; the opt-out page provides a simple way for visitors to opt out.
+
+
+Third-party tools and choices:
+- Google Analytics: standard GA4 configuration is supported on this site. To opt out of Google Analytics using Google's browser add-on, visit: https://tools.google.com/dlpage/gaoptout
+
+
+Contact:
+For questions about this privacy policy or data practices, contact admin@phsrambots.org

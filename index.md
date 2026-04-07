@@ -1,4 +1,4 @@
-# PHS RAMBOTS (phsrambots.org) — LLM Descriptor
+# PHS RAMBOTS (phsrambots.org) - LLM Descriptor
 
 ## Overview
 **PHS RAMBOTS** is the official website of a high school robotics team based in Perry, Michigan. The team, known as **FIRST Robotics Competition (FRC) Team 6548**, participates in competitive robotics while promoting STEM education, teamwork, and community engagement.

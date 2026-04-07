@@ -30,6 +30,9 @@ body {
 
 .container{
     margin-bottom: 20px;
+    width: 95%;
+    max-width: 1200px;
+    box-sizing: border-box;
 }
 
 .icon-link {
@@ -766,6 +769,20 @@ a {
     }
 }
 
+/* Privacy modal and footer helper styles */
+.footer { padding-bottom: 24px; }
+.footer-left p.privacy-link { margin: 8px 0; }
+.footer-left p.privacy-link a, .footer-left p.privacy-link a:visited { color: #ff4040; text-decoration: none; }
+.footer-left p.privacy-link a:hover { text-decoration: underline; }
+.privacy-modal{ position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.6); z-index: 120000 }
+.privacy-modal.open{ display: flex }
+.privacy-modal-content{ background: #fff; color: #111; padding: 18px; border-radius: 8px; max-width: 800px; width: 94%; max-height: 80vh; overflow:auto }
+.privacy-modal-content h2{ margin-top:0 }
+.privacy-modal-content pre{ font-family: Afacad, Arial, sans-serif; color: #111; font-size: 15px; line-height: 1.45; white-space: pre-wrap; }
+.privacy-close{ display:inline-block; margin-top:12px; padding:8px 12px; background: rgba(0,0,0,0.06); color:#111; border-radius:6px; border:1px solid rgba(0,0,0,0.06); cursor:pointer; font-family: Afacad, Arial, sans-serif; font-size:14px }
+.privacy-close:hover{ background: rgba(0,0,0,0.1) }
+.footer-right .disclaimer{ margin-top:12px; font-size:13px; color: rgba(255,255,255,0.9); text-align:right }
+
 /* Donation QR and button side-by-side layout */
 .donatesidebyside{
     display: flex;
@@ -870,3 +887,14 @@ a {
     .qr-logo-bg{ width: 40px; height: 40px; }
     .qr-logo-bg img{ width: 36px; height: 36px; }
 }
+
+.social-icon img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Helpers to replace inline styles previously used in templates */
+.center-normal { text-align: center; font-weight: normal; margin-top: -20px; }
+.sponsor-subtitle { font-size: 20px; font-weight: normal; margin-bottom: 25px; }
+.sponsorheader.no-margin { margin-bottom: 0; }
+.imageslideshow { width: 100%; }

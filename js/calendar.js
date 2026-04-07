@@ -130,7 +130,7 @@
     const body = el('modal-body');
     body.innerHTML = '';
     const h = document.createElement('h2');
-    h.textContent = singleEvent ? singleEvent.title : `Events — ${dateStr}`;
+    h.textContent = singleEvent ? singleEvent.title : `Events - ${dateStr}`;
     body.appendChild(h);
 
     const events = singleEvent ? [singleEvent] : (state.eventsByDate[dateStr] || []);
@@ -141,7 +141,7 @@
       const evWrap = document.createElement('div'); evWrap.className='ev-wrap';
       const title = document.createElement('div'); title.className='ev-title'; title.textContent = ev.title; evWrap.appendChild(title);
       if(ev.start || ev.end){
-        const times = document.createElement('div'); times.className='ev-time'; times.textContent = `${ev.start||''}${ev.start && ev.end ? ' — ' : ''}${ev.end||''}`; evWrap.appendChild(times);
+        const times = document.createElement('div'); times.className='ev-time'; times.textContent = `${ev.start||''}${ev.start && ev.end ? ' - ' : ''}${ev.end||''}`; evWrap.appendChild(times);
       }
       if(ev.location){
         const loc = document.createElement('div'); loc.className='ev-loc';
