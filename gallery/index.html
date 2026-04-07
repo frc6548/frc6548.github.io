@@ -109,8 +109,18 @@
                 const img = document.createElement('img');
                 img.className = 'photo-thumb';
                 img.alt = file.name;
-                img.dataset.src = file.download_url;
                 img.loading = 'lazy';
+                // Use a small thumbnail via images.weserv.nl for faster initial load
+                try {
+                    const raw = file.download_url || '';
+                    const hostless = raw.replace(/^https?:\/\//, '');
+                    const thumb = 'https://images.weserv.nl/?url=' + encodeURIComponent(hostless) + '&w=480&h=320&fit=cover&output=jpg&q=60';
+                    img.src = thumb;
+                    // store full-size for later
+                    img.dataset.full = file.download_url;
+                } catch (e) {
+                    img.src = file.download_url;
+                }
                 img.addEventListener('click', () => showLightbox(file));
 
                 const caption = document.createElement('div');
@@ -120,7 +130,20 @@
                 card.appendChild(img);
                 card.appendChild(caption);
 
-                observeLazyImage(img);
+                // still observe lazy loading for progressive enhancement: when image enters viewport, swap to full-res if data-full present
+                function observeThumb(imgEl) {
+                    if (!('IntersectionObserver' in window)) return;
+                    const obs = new IntersectionObserver((entries, o) => {
+                        entries.forEach(entry => {
+                            if (!entry.isIntersecting) return;
+                            const target = entry.target;
+                            // do not automatically load full-res here to save bandwidth; keep thumbnail until explicit click
+                            o.unobserve(target);
+                        });
+                    }, { rootMargin: '200px' });
+                    obs.observe(imgEl);
+                }
+                observeThumb(img);
                 return card;
             }
 
