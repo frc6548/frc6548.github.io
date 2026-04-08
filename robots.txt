@@ -1,0 +1,17 @@
+# Robots by Grayson
+
+User-agent: *
+Allow: /
+
+# Bytebots like to DDOS by mistake
+User-agent: Bytespider
+Disallow: /
+
+User-agent: ByteDance
+Disallow: /
+
+User-agent: DeepSeek
+Disallow: /
+
+User-agent: DeepSeekBot
+Disallow: /
