@@ -148,7 +148,7 @@
         const maps = document.createElement('a');
         maps.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ev.location)}`;
         maps.target = '_blank';
-        maps.rel = 'noopener';
+        maps.rel = 'noopener noreferrer';
         maps.textContent = 'Open location in Google Maps';
         loc.appendChild(maps);
         evWrap.appendChild(loc);
@@ -162,7 +162,7 @@
       const startDate = (ev.date || dateStr).replace(/-/g,'');
       // use all-day event for simplicity
       gcBtn.href = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(ev.title||'Event')}&dates=${startDate}/${startDate}&details=${encodeURIComponent(ev.description||'')}`;
-      gcBtn.target = '_blank'; gcBtn.rel='noopener'; gcBtn.textContent = 'Add to Google Calendar';
+      gcBtn.target = '_blank'; gcBtn.rel='noopener noreferrer'; gcBtn.textContent = 'Add to Google Calendar';
       evWrap.appendChild(gcBtn);
 
       body.appendChild(evWrap);

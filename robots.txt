@@ -1,5 +1,7 @@
 # Robots by Grayson
 
+Sitemap: sitemap.xml
+
 User-agent: *
 Allow: /
 
