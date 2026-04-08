@@ -20,7 +20,18 @@ window.addEventListener('DOMContentLoaded', function () {
     "logo": "https://phsrambots.org/logo.png",
     "description": "Perry RAMBOTS is FIRST Robotics Competition Team 6548, a high school robotics team building competitive robots, developing STEM skills, and competing since 2017.",
     "foundingDate": "2017",
-    "sameAs": ["https://www.thebluealliance.com/team/6548"]
+    "sameAs": [
+      "https://phsrambots.org",
+      "https://phsrambots.org/links",
+      "https://phsrambots.org/calendar",
+      "https://phsrambots.org/gallery",
+      "https://www.thebluealliance.com/team/6548",
+      "https://www.youtube.com/@PHSRambots",
+      "https://www.instagram.com/rambots_6548",
+      "https://www.facebook.com/phsrambots",
+      "https://github.com/frc6548",
+      "https://www.tiktok.com/@phsrambots"
+    ]
   });
 
   injectSchema('ld-website', {
@@ -45,9 +56,16 @@ window.addEventListener('DOMContentLoaded', function () {
       "addressCountry": "US"
     },
     "sameAs": [
+      "https://phsrambots.org",
+      "https://phsrambots.org/links",
+      "https://phsrambots.org/calendar",
+      "https://phsrambots.org/gallery",
       "https://www.thebluealliance.com/team/6548",
       "https://www.youtube.com/@PHSRambots",
-      "https://www.facebook.com/phsrambots"
+      "https://www.instagram.com/rambots_6548",
+      "https://www.facebook.com/phsrambots",
+      "https://github.com/frc6548",
+      "https://www.tiktok.com/@phsrambots"
     ]
   });
 

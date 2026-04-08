@@ -1,9 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
 <url>
-  <loc>http://phsrambots.org/team</loc>
+  <loc>https://phsrambots.org/</loc>
   <priority>1.0</priority>
+  <changefreq>daily</changefreq>
+  <lastmod>2026-04-08</lastmod>
+</url>
+<url>
+  <loc>https://phsrambots.org/team</loc>
+  <priority>0.9</priority>
   <changefreq>weekly</changefreq>
-  <lastmod>2026-04-07</lastmod>
+  <lastmod>2026-04-08</lastmod>
+</url>
+<url>
+  <loc>https://phsrambots.org/calendar</loc>
+  <priority>0.8</priority>
+  <changefreq>weekly</changefreq>
+  <lastmod>2026-04-08</lastmod>
+</url>
+<url>
+  <loc>https://phsrambots.org/gallery</loc>
+  <priority>0.7</priority>
+  <changefreq>weekly</changefreq>
+  <lastmod>2026-04-08</lastmod>
+</url>
+<url>
+  <loc>https://phsrambots.org/donate</loc>
+  <priority>0.7</priority>
+  <changefreq>monthly</changefreq>
+  <lastmod>2026-04-08</lastmod>
+</url>
+<url>
+  <loc>https://phsrambots.org/links</loc>
+  <priority>0.6</priority>
+  <changefreq>monthly</changefreq>
+  <lastmod>2026-04-08</lastmod>
+</url>
+<url>
+  <loc>https://phsrambots.org/robots/2025-guppy</loc>
+  <priority>0.5</priority>
+  <changefreq>yearly</changefreq>
+  <lastmod>2026-04-08</lastmod>
+</url>
+<url>
+  <loc>https://phsrambots.org/opt-out</loc>
+  <priority>0.1</priority>
+  <changefreq>yearly</changefreq>
+  <lastmod>2026-04-08</lastmod>
 </url>
 </urlset>
