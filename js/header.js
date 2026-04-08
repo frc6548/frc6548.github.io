@@ -109,6 +109,7 @@ window.addEventListener('DOMContentLoaded', function () {
     a.href = it.href;
     a.setAttribute('role', 'menuitem');
     if (it.target) a.target = it.target;
+    if (it.target === '_blank') a.rel = 'noopener noreferrer';
     a.className = 'menu-link';
     li.appendChild(a);
     menu.appendChild(li);
@@ -147,7 +148,15 @@ window.addEventListener('DOMContentLoaded', function () {
   leftSection.appendChild(contactTitle);
 
   var emailPara = document.createElement('p');
-  emailPara.innerHTML = '<a href="mailto:admin@phsrambots.org">admin@phsrambots.org</a>';
+  var emailLink = document.createElement('a');
+  emailLink.className = 'email-link';
+  emailLink.dataset.obf = 'adminATphsrambotsDOTorg';
+  (function(){
+    var decoded = emailLink.dataset.obf.replace('AT','@').replace('DOT','.');
+    emailLink.textContent = decoded;
+    emailLink.href = 'mailto:' + decoded;
+  })();
+  emailPara.appendChild(emailLink);
   leftSection.appendChild(emailPara);
 
   var phonePara = document.createElement('p');
@@ -163,7 +172,7 @@ window.addEventListener('DOMContentLoaded', function () {
   var schoolLink = document.createElement('a');
   schoolLink.href = 'https://perry.k12.mi.us/';
   schoolLink.target = '_blank';
-  schoolLink.rel = 'noopener';
+  schoolLink.rel = 'noopener noreferrer';
   schoolLink.textContent = 'Perry High School';
   schoolPara.appendChild(schoolLink);
   leftSection.appendChild(schoolPara);
@@ -210,6 +219,7 @@ window.addEventListener('DOMContentLoaded', function () {
     link.className = 'social-icon';
     link.title = social.name;
     link.target = '_blank';
+    link.rel = 'noopener noreferrer';
     
     var img = document.createElement('img');
     img.src = social.icon;
