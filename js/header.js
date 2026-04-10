@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', function () {
     "name": "Perry RAMBOTS",
     "alternateName": "FRC Team 6548",
     "url": "https://phsrambots.org",
-    "logo": "https://phsrambots.org/logo.png",
+    "logo": "https://phsrambots.org/logo.webp",
     "description": "Perry RAMBOTS is FIRST Robotics Competition Team 6548, a high school robotics team building competitive robots, developing STEM skills, and competing since 2017.",
     "foundingDate": "2017",
     "sameAs": [
@@ -45,7 +45,7 @@ window.addEventListener('DOMContentLoaded', function () {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Perry RAMBOTS",
-    "image": "https://phsrambots.org/data/icon-white.png",
+    "image": "https://phsrambots.org/data/icon-white.webp",
     "url": "https://phsrambots.org",
     "address": {
       "@type": "PostalAddress",
@@ -74,7 +74,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
   var icon = document.createElement('img');
   icon.className = "siteicon";
-  icon.src = "/data/icon.png";
+  icon.src = "/data/icon.webp";
   icon.alt = "Perry RAMBOTS Logo";
 
   var iconLink = document.createElement('a');
@@ -224,11 +224,11 @@ window.addEventListener('DOMContentLoaded', function () {
   socialLinks.className = 'social-icons';
 
   var socials = [
-    { name: 'YouTube', icon: '/data/icons/youtube.png', url: 'https://www.youtube.com/@PHSRambots' },
-    { name: 'TikTok', icon: '/data/icons/tiktok.png', url: 'https://www.tiktok.com/@phsrambots' },
-    { name: 'Instagram', icon: '/data/icons/instagram.png', url: 'https://www.instagram.com/rambots_6548' },
-    { name: 'Facebook', icon: '/data/icons/facebook.png', url: 'https://www.facebook.com/phsrambots' },
-    { name: 'GitHub', icon: '/data/icons/github.png', url: 'https://github.com/frc6548' }
+    { name: 'YouTube', icon: '/data/icons/youtube.webp', url: 'https://www.youtube.com/@PHSRambots' },
+    { name: 'TikTok', icon: '/data/icons/tiktok.webp', url: 'https://www.tiktok.com/@phsrambots' },
+    { name: 'Instagram', icon: '/data/icons/instagram.webp', url: 'https://www.instagram.com/rambots_6548' },
+    { name: 'Facebook', icon: '/data/icons/facebook.webp', url: 'https://www.facebook.com/phsrambots' },
+    { name: 'GitHub', icon: '/data/icons/github.webp', url: 'https://github.com/frc6548' }
   ];
 
   socials.forEach(function(social) {
