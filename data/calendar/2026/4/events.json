@@ -1,0 +1,151 @@
+[
+  {
+    "id": "fenton-info",
+    "title": "FENTON presented by Gene Haas Foundation",
+    "date": "2026-04-10",
+    "end_date": "2026-04-12",
+    "location": "Fenton High School",
+    "address": "3200 W. Shiawassee Ave., Fenton, MI 48430",
+    "map": "MAP",
+    "contacts": [
+      {
+        "role": "Event Coordinator",
+        "name": "Donald Ridge",
+        "email": "dridge478@att.net"
+      },
+      {
+        "role": "Volunteer Coordinator",
+        "name": "Heidi Ritchie",
+        "email": "Heidi.frc5114@gmail.com"
+      }
+    ],
+    "description": "Venue-specific information and parking/load in/out details. This guide contains venue information, venue-specific rules, parking & load in/out information. Schedule subject to change."
+  },
+  {
+    "id": "fenton-fri-pits",
+    "title": "Pits Open / Inspections",
+    "date": "2026-04-10",
+    "start": "17:00",
+    "end": "22:00",
+    "location": "Fenton High School",
+    "description": "Pits open for inspections and robot testing."
+  },
+  {
+    "id": "fenton-sat-pits",
+    "title": "Pits Open / Inspections",
+    "date": "2026-04-11",
+    "start": "08:00",
+    "end": "10:30",
+    "location": "Fenton High School",
+    "description": "Pits open and continuing inspections."
+  },
+  {
+    "id": "fenton-sat-opening",
+    "title": "Opening Ceremonies",
+    "date": "2026-04-11",
+    "start": "10:30",
+    "end": "11:00",
+    "location": "Fenton High School",
+    "description": "Event opening ceremonies."
+  },
+  {
+    "id": "fenton-sat-quals-1",
+    "title": "Qualification Matches",
+    "date": "2026-04-11",
+    "start": "11:00",
+    "end": "13:00",
+    "location": "Fenton High School",
+    "description": "Morning qualification matches."
+  },
+  {
+    "id": "fenton-sat-lunch",
+    "title": "Lunch",
+    "date": "2026-04-11",
+    "start": "13:00",
+    "end": "14:00",
+    "location": "Fenton High School",
+    "description": "Lunch break."
+  },
+  {
+    "id": "fenton-sat-quals-2",
+    "title": "Qualification Matches",
+    "date": "2026-04-11",
+    "start": "14:00",
+    "end": "20:00",
+    "location": "Fenton High School",
+    "description": "Afternoon qualification matches."
+  },
+  {
+    "id": "fenton-sat-pits-close",
+    "title": "Pits Close",
+    "date": "2026-04-11",
+    "start": "21:00",
+    "location": "Fenton High School",
+    "description": "Pits close.",
+    "note": "*Pits will close at scheduled time or one hour after the last match, whichever is later."
+  },
+  {
+    "id": "fenton-sun-pits-open",
+    "title": "Pits Open",
+    "date": "2026-04-12",
+    "start": "08:00",
+    "end": "09:00",
+    "location": "Fenton High School",
+    "description": "Pits open for the final day."
+  },
+  {
+    "id": "fenton-sun-opening",
+    "title": "Opening Ceremonies",
+    "date": "2026-04-12",
+    "start": "09:00",
+    "end": "09:30",
+    "location": "Fenton High School",
+    "description": "Sunday opening ceremonies."
+  },
+  {
+    "id": "fenton-sun-quals",
+    "title": "Qualification Matches",
+    "date": "2026-04-12",
+    "start": "09:30",
+    "end": "12:30",
+    "location": "Fenton High School",
+    "description": "Morning qualification matches."
+  },
+  {
+    "id": "fenton-sun-alliance",
+    "title": "Alliance Selections",
+    "date": "2026-04-12",
+    "start": "12:30",
+    "end": "13:00",
+    "location": "Fenton High School",
+    "description": "Alliance selections."
+  },
+  {
+    "id": "fenton-sun-lunch",
+    "title": "Lunch",
+    "date": "2026-04-12",
+    "start": "13:00",
+    "end": "14:00",
+    "location": "Fenton High School",
+    "description": "Lunch break."
+  },
+  {
+    "id": "fenton-sun-playoffs",
+    "title": "Playoff Matches",
+    "date": "2026-04-12",
+    "start": "14:00",
+    "end": "17:00",
+    "location": "Fenton High School",
+    "description": "Playoff matches."
+  },
+  {
+    "id": "fenton-awards",
+    "title": "Awards Ceremony",
+    "date": "2026-04-12",
+    "start": "17:00",
+    "end": "17:30",
+    "location": "Fenton High School",
+    "description": "Awards ceremony. Pits close after awards.",
+    "note": "*Pits will close at scheduled time or one hour after the close of awards, whichever is later."
+  }
+]
