@@ -148,4 +148,26 @@
     "description": "Awards ceremony. Pits close after awards.",
     "note": "*Pits will close at scheduled time or one hour after the close of awards, whichever is later."
   }
+  ,
+  {
+    "id": "charlies-pizza-buffet",
+    "title": "Charlie's Bar and Grill Pizza Buffet",
+    "date": "2026-04-19",
+    "start": "13:00",
+    "end": "16:00",
+    "location": "Charlie's Bar and Grill",
+    "address": "Charlie's Bar and Grill",
+    "map": "https://www.google.com/maps/place/Charlies+Bar+Grill/@42.8258209,-84.2214317,17z/data=!3m1!4b1!4m6!3m5!1s0x88231c50243cbb5f:0xda5620082b54c66e!8m2!3d42.8258209!4d-84.2188568!16s%2Fg%2F1hc2fxhcy?entry=ttu&g_ep=EgoyMDI2MDQxMy4wIKXMDSoASAFQAw%3D%3D",
+    "description": "Students will be gathering to help Charlie's host a pizza buffet."
+  },
+  {
+    "id": "perry-lakes-flower-cleanup",
+    "title": "Perry Lakes Flower Bed Cleanup (for Mrs. Hunt)",
+    "date": "2026-04-24",
+    "start": "09:00",
+    "end": "12:00",
+    "location": "Perry Lake Estates / Perry Lakes",
+    "map": "https://www.google.com/maps/place/Perry+Lake+Estates/@42.8375442,-84.2230931,13.46z/data=!4m10!1m2!2m1!1sPerry+Lakes!3m6!1s0x88231d4d28e9c23f:0x35a78612888319a6!8m2!3d42.834507!4d-84.2261223!15sCgtQZXJyeSBMYWtlc5IBE2hvdXNpbmdfZGV2ZWxvcG1lbnTgAQA!16s%2Fg%2F11s3v6xlkg?entry=ttu&g_ep=EgoyMDI2MDQxMy4wIKXMDSoASAFQAw%3D%3D",
+    "description": "Volunteer flower bed cleanup for Mrs. Hunt. (Scheduled two days before April 26; flexible between 4/15 and 4/26.)"
+  }
 ]
