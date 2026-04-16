@@ -12,6 +12,13 @@
 
   function pad(n){ return n < 10 ? '0'+n : ''+n }
 
+  function parseYMD(ymd){
+    // Parse YYYY-MM-DD as a local date (avoid Date(YYYY-MM-DD) UTC parsing)
+    const parts = String(ymd).split('-').map(Number);
+    if(parts.length !== 3) return new Date(ymd);
+    return new Date(parts[0], parts[1] - 1, parts[2]);
+  }
+
   function tryFetchPaths(year, month){
     // Try both numeric folder (e.g. 3) and zero-padded (03)
     const mNoPad = String(month + 1);
@@ -43,11 +50,11 @@
       // if end is time like "20:00" and no endDate provided, treat as single-day
       const isDateRange = /^\d{4}-\d{2}-\d{2}$/.test(end);
       if(isDateRange){
-        // add event to every day in range inclusive
-        const s = new Date(start);
-        const e = new Date(end);
-        for(let d = new Date(s); d <= e; d.setDate(d.getDate()+1)){
-          const y = d.getFullYear(); const m = ('0'+(d.getMonth()+1)).slice(-2); const day = ('0'+d.getDate()).slice(-2);
+        // add event to every day in range inclusive (parse as local dates)
+        const s = parseYMD(start);
+        const e = parseYMD(end);
+        for(let cur = new Date(s); cur <= e; cur.setDate(cur.getDate()+1)){
+          const y = cur.getFullYear(); const m = ('0'+(cur.getMonth()+1)).slice(-2); const day = ('0'+cur.getDate()).slice(-2);
           const key = `${y}-${m}-${day}`;
           if(!state.eventsByDate[key]) state.eventsByDate[key] = [];
           state.eventsByDate[key].push(ev);
