@@ -8,6 +8,9 @@
     eventsByDate: {}
   };
 
+  // Source timezone for event data (site stores events in Eastern Time)
+  const SOURCE_TIMEZONE = 'America/New_York';
+
   function el(id){ return document.getElementById(id); }
 
   function pad(n){ return n < 10 ? '0'+n : ''+n }
@@ -108,7 +111,9 @@
           events.slice(0,3).forEach(ev => {
             const b = document.createElement('button');
             b.className='event-badge';
-            b.textContent = ev.title;
+            // show localized short start time on the badge when available
+            const shortTime = formatEventShortTime(dateStr, ev);
+            b.textContent = shortTime ? `${shortTime} • ${ev.title}` : ev.title;
             b.title = ev.title;
             b.onclick = (e)=>{ e.stopPropagation(); openModal(dateStr, ev); };
             list.appendChild(b);
@@ -148,7 +153,9 @@
       const evWrap = document.createElement('div'); evWrap.className='ev-wrap';
       const title = document.createElement('div'); title.className='ev-title'; title.textContent = ev.title; evWrap.appendChild(title);
       if(ev.start || ev.end){
-        const times = document.createElement('div'); times.className='ev-time'; times.textContent = `${ev.start||''}${ev.start && ev.end ? ' - ' : ''}${ev.end||''}`; evWrap.appendChild(times);
+        const times = document.createElement('div'); times.className='ev-time';
+        times.textContent = formatEventTime(dateStr, ev) || `${ev.start||''}${ev.start && ev.end ? ' - ' : ''}${ev.end||''}`;
+        evWrap.appendChild(times);
       }
       if(ev.location){
         const loc = document.createElement('div'); loc.className='ev-loc';
@@ -175,6 +182,11 @@
       body.appendChild(evWrap);
     });
 
+      // timezone note
+      const tzNote = document.createElement('div'); tzNote.className = 'ev-tz-note';
+      tzNote.textContent = `Event times shown in your local timezone. (Events listed in ${SOURCE_TIMEZONE}.)`;
+      body.appendChild(tzNote);
+
     modal.setAttribute('aria-hidden','false');
     modal.classList.add('open');
   }
@@ -183,6 +195,59 @@
     const modal = el('event-modal');
     modal.setAttribute('aria-hidden','true');
     modal.classList.remove('open');
+  }
+
+  // Helpers: convert a wall time in SOURCE_TIMEZONE to epoch ms, then format for user's locale
+  function getTZOffset(date, timeZone){
+    const fmt = new Intl.DateTimeFormat('en-US', { timeZone, hour12: false, year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit' });
+    const parts = fmt.formatToParts(date);
+    const map = {};
+    parts.forEach(p=>{ if(p.type !== 'literal') map[p.type] = p.value; });
+    const tzUtc = Date.UTC(Number(map.year), Number(map.month)-1, Number(map.day), Number(map.hour), Number(map.minute), Number(map.second));
+    return tzUtc - date.getTime();
+  }
+
+  function epochForWallTime(year, month, day, hour, minute, timeZone){
+    const utcForWall = Date.UTC(year, month - 1, day, hour, minute, 0);
+    const testDate = new Date(utcForWall);
+    const offset = getTZOffset(testDate, timeZone);
+    return utcForWall - offset;
+  }
+
+  function parseTimeHM(hm){
+    if(!hm) return null;
+    const m = String(hm).trim().match(/^(\d{1,2}):(\d{2})$/);
+    if(!m) return null;
+    return { hour: Number(m[1]), minute: Number(m[2]) };
+  }
+
+  function formatEventTime(dateStr, ev){
+    try{
+      const parts = String(dateStr || ev.date).split('-').map(Number);
+      if(parts.length < 3) return null;
+      const y = parts[0], m = parts[1], d = parts[2];
+      const s = parseTimeHM(ev.start);
+      const e = parseTimeHM(ev.end);
+      const userFormatter = new Intl.DateTimeFormat(undefined, { hour: 'numeric', minute: '2-digit', hour12: true });
+      if(s && e){
+        const startEpoch = epochForWallTime(y, m, d, s.hour, s.minute, SOURCE_TIMEZONE);
+        const endEpoch = epochForWallTime(y, m, d, e.hour, e.minute, SOURCE_TIMEZONE);
+        return `${userFormatter.format(new Date(startEpoch))} - ${userFormatter.format(new Date(endEpoch))}`;
+      } else if(s){
+        const startEpoch = epochForWallTime(y, m, d, s.hour, s.minute, SOURCE_TIMEZONE);
+        return `${userFormatter.format(new Date(startEpoch))}`;
+      }
+    }catch(err){
+      return null;
+    }
+    return null;
+  }
+
+  function formatEventShortTime(dateStr, ev){
+    const t = formatEventTime(dateStr, ev);
+    if(!t) return '';
+    // return just the start time portion (before ' - ' if present)
+    return t.split(' - ')[0];
   }
 
   function setupControls(){

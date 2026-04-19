@@ -398,6 +398,12 @@ a {
 .cal-weekdays{ display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; margin-bottom:6px }
 .cal-weekday{ text-align:center; font-weight:700; color: rgba(255,255,255,0.9); }
 .cal-cells{ display:grid; grid-template-columns: repeat(7, 1fr); gap:8px }
+
+/* Allow horizontal scrolling on narrow devices instead of squishing text */
+.calendar-grid{ overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.cal-cells{ min-width: 700px; }
+
+.ev-tz-note{ margin-top:12px; color: rgba(255,255,255,0.72); font-size:0.95rem; text-align:center }
 .cal-cell{ min-height: 90px; background: rgba(255,255,255,0.02); border-radius:6px; padding:8px; position:relative; cursor:pointer; box-sizing: border-box; overflow: hidden }
 .cal-cell.cal-empty{ background: transparent; cursor: default; }
 .cal-date{ font-weight:700; margin-bottom:6px }
@@ -418,6 +424,9 @@ a {
 @media (max-width:480px){
     .cal-cell{ min-height:72px; padding:6px }
     .calendar-title{ font-size:18px }
+    /* Make event badges more compact on small screens and truncate long lines */
+    .event-badge{ font-size:12px; padding:4px 6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+    .cal-cells{ min-width:640px }
 }
 
 /* Livestream styles */
