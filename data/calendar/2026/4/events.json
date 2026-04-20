@@ -163,7 +163,7 @@
   {
     "id": "perry-lakes-flower-cleanup",
     "title": "Perry Lakes Flower Bed Cleanup (for Mrs. Hunt)",
-    "date": "2026-04-24",
+    "date": "2026-04-23",
     "start": "09:00",
     "end": "12:00",
     "location": "Perry Lake Estates / Perry Lakes",
@@ -180,5 +180,16 @@
     "location": "Perry Secondary Campus",
     "map": "https://www.google.com/maps/place/Perry+Middle+School/@42.8328033,-84.2136402,17z/data=!4m14!1m7!3m6!1s0x88231c58ea1b151b:0x7cfea41082594a55!2sPerry+High+School!8m2!3d42.8327994!4d-84.2110653!16s%2Fm%2F075_bw_!3m5!1s0x88231c5885e5361b:0x1e6d5ecd7d7f1b1d!8m2!3d42.833086!4d-84.213395!16s%2Fm%2F075_bz8?entry=ttu&g_ep=EgoyMDI2MDQxMy4wIKXMDSoASAFQAw%3D%3D",
     "description": "The Perry Public Schools Community Showcase 2026 is a family-friendly event happening Tuesday, April 21 from 6:00–8:00 PM at Perry Secondary Campus, featuring student projects, performances, and interactive displays. Attendees can explore classes, clubs, and programs while connecting with staff, community members, and local businesses. Enjoy free refreshments and celebrate student achievements—call 517-625-3104 for more information."
+  }
+
+  ,
+  {
+    "id": "cleaning-room-2026-04-20",
+    "title": "Cleaning Up Room",
+    "date": "2026-04-20",
+    "start": "15:00",
+    "end": "17:00",
+    "location": "Team Room",
+    "description": "Students will clean the room, help arrange and get it cleaned up."
   }
 ]
