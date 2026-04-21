@@ -168,7 +168,7 @@ window.addEventListener('DOMContentLoaded', function () {
   var emailPara = document.createElement('p');
   var emailLink = document.createElement('a');
   emailLink.className = 'email-link';
-  emailLink.dataset.obf = 'adminATphsrambotsDOTorg';
+  emailLink.dataset.obf = 'phsrambotsATgmailDOTcom';
   (function(){
     var decoded = emailLink.dataset.obf.replace('AT','@').replace('DOT','.');
     emailLink.textContent = decoded;
