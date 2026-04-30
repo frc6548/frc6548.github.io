@@ -28,5 +28,13 @@
     "location": "General city of Perry, Michigan",
     "map": "https://www.google.com/maps/place/Perry,+MI+48872/@42.822527,-84.2383885,14z/data=!3m1!4b1!4m6!3m5!1s0x88231c445fd15587:0x6fef3b16acd96996!8m2!3d42.8264205!4d-84.2194127!16zL20vMHZxMHE?entry=ttu&g_ep=EgoyMDI2MDQyNi4wIKXMDSoASAFQAw%3D%3D",
     "description": "Saturday 5/2 will be a scrapping extravaganza!"
-  }
+  },
+  {
+    "id": "Alumni-Banquet-Setup-2026-05-02",
+    "title": "Setting up for Alumni Banquet",
+    "date": "2026-05-02",
+    "start": "8:00",
+    "end": "9:00",
+    "location": "Perry High School",
+    "description": "Saturday 5/2 the team will be setting up tables for the Alumni Banquet."
 ]
