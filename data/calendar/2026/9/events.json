@@ -1,1 +1,13 @@
-
+[
+  {
+    "id": "Perry-Classic-Car-Show",
+    "title": "Perry Classic Car Show",
+    "date": "2026-09-19",
+    "start": "10:00",
+    "end": "15:00",
+    "location": "Perry City Hall",
+    "address": "Perry City Hall, 203 W Polly St, Perry, MI 48872",
+    "map": "https://www.google.com/maps/place/Veterans+Memorial+Park/@42.8255604,-84.2226162,18.38z/data=!4m6!3m5!1s0x88231c51ecffffff:0x82710926f5811d87!8m2!3d42.8264108!4d-84.2217868!16s%2Fg%2F11yjnz648x?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D",
+    "description": "Demo at car show and we are doing some activities!"
+  }
+]
