@@ -11,3 +11,14 @@
     "description": "Demo at car show and we are doing some activities!"
   }
 ]
+[ 
+  {
+    "id": "Craft-Show-Village-Fresh-2026-09-12",
+    "title": "Summer Craft Show At Village Fresh",
+    "date": "2026-09-12",
+    "start": "10:00",
+    "end": "16:00",
+    "location": "https://www.google.com/maps/place/520+N+Main+St,+Perry,+MI+48872/@42.8297751,-84.2188204,17.79z/data=!4m6!3m5!1s0x88231c574f1bf201:0x262ba21e5d78f47f!8m2!3d42.8304985!4d-84.2182671!16s%2Fg%2F11c3q3r5mv?entry=ttu&g_ep=EgoyMDI2MDUxMC4wIKXMDSoASAFQAw%3D%3D",
+    "description": "This is one of the many craft shows in summer put on by the Village Fresh Market every couple weeks. Come on down to enjoy some fun bands and STEAM activities."
+  }
+]
