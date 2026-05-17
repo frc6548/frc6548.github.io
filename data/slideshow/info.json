@@ -1,0 +1,45 @@
+[
+    {
+    "href": "https://forms.gle/Rc3GtHm5FaQgPyRFA",
+    "img": "/data/slideshow/signup.webp",
+    "alt": "Screenshot of Signup Form",
+    "header": "Join Us",
+    "description": "Sign up to join our FRC and upcoming FTC teams for the 2026-2027 season",
+    "active": true
+  },
+  {
+    "href": "https://www.thebluealliance.com/team/6548",
+    "img": "/data/slideshow/blue.webp",
+    "alt": "Photo of Robot in Reefscape 2025",
+    "header": "The Blue Alliance",
+    "description": "Visit our blue alliance page to see how we perform and play"
+  },
+  {
+    "href": "https://www.youtube.com/watch?v=1FV8Z4ZVC18",
+    "img": "/data/slideshow/robot working.webp",
+    "alt": "ARTEMIS Robot",
+    "header": "2026: ARTEMIS II",
+    "description": "Check out our 2026 robot, Artemis II"
+  },
+  {
+    "href": "https://www.youtube.com/playlist?list=PLMiwgMvPJVNyQyo3v6IfAfSgRb1O_aLjw",
+    "img": "/data/slideshow/match.webp",
+    "alt": "Live Match Photo",
+    "header": "Our Matches",
+    "description": "Watch our matches on YouTube"
+  },
+  {
+    "href": "https://www.youtube.com/@PHSRambots",
+    "img": "/data/slideshow/banner.webp",
+    "alt": "YouTube Channel",
+    "header": "YouTube Channel",
+    "description": "Subscribe to our YouTube channel for match videos and highlights"
+  },
+  {
+    "href": "/team",
+    "img": "/data/slideshow/team.webp",
+    "alt": "Team Photo",
+    "header": "The Team",
+    "description": "Learn more about our team members"
+  }
+]

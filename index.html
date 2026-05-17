@@ -52,60 +52,12 @@
     <script src="/js/sponsors.js"></script>
     <div class="imageslideshow">
         <div class="slidecontainer">
-            <a href="https://www.thebluealliance.com/team/6548" class="slidelink active" rel="noopener noreferrer">
-                <div class="slide active">
-                    <img src="/data/slideshow/blue.webp" alt="Photo of Robot in Reefscape 2025" class="slideimage">
-                    <div class="slideoverlay">
-                        <h2 class="slideheader">The Blue Alliance</h2>
-                        <p class="slidedescription">Visit our blue alliance page to see how we perform and play</p>
-                    </div>
-                </div>
-            </a>
-            <a href="https://www.youtube.com/watch?v=1FV8Z4ZVC18" class="slidelink" rel="noopener noreferrer">
-                <div class="slide">
-                    <img src="/data/slideshow/robot working.webp" alt="ARTEMIS Robot" class="slideimage">
-                    <div class="slideoverlay">
-                        <h2 class="slideheader">2026: ARTEMIS II</h2>
-                        <p class="slidedescription">Check out our 2026 robot, Artemis II</p>
-                    </div>
-                </div>
-            </a>
-            <a href="https://www.youtube.com/playlist?list=PLMiwgMvPJVNyQyo3v6IfAfSgRb1O_aLjw" class="slidelink" rel="noopener noreferrer">
-                <div class="slide">
-                    <img src="/data/slideshow/match.webp" alt="Live Match Photo" class="slideimage">
-                    <div class="slideoverlay">
-                        <h2 class="slideheader">Our Matches</h2>
-                        <p class="slidedescription">Watch our matches on YouTube</p>
-                    </div>
-                </div>
-            </a>
-            <a href="/team" class="slidelink">
-                <div class="slide">
-                    <img src="/data/slideshow/team.webp" alt="Team Photo" class="slideimage">
-                    <div class="slideoverlay">
-                        <h2 class="slideheader">The Team</h2>
-                        <p class="slidedescription">Learn more about our team members</p>
-                    </div>
-                </div>
-            </a>
-            <a href="https://www.youtube.com/@PHSRambots" class="slidelink" rel="noopener noreferrer">
-                <div class="slide">
-                    <img src="/data/slideshow/banner.webp" alt="YouTube Channel" class="slideimage">
-                    <div class="slideoverlay">
-                        <h2 class="slideheader">YouTube Channel</h2>
-                        <p class="slidedescription">Subscribe to our YouTube channel for match videos and highlights</p>
-                    </div>
-                </div>
-            </a>
+            <!-- Slides will be populated from data/slideshow/info.json -->
         </div>
         <button class="slidebutton prev" onclick="changeSlide(-1)">❮</button>
         <button class="slidebutton next" onclick="changeSlide(1)">❯</button>
         <div class="slidedots">
-            <span class="dot active" onclick="currentSlide(0)"></span>
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
+            <!-- Dots populated by slideshow.js when loading JSON -->
         </div>
     </div>
     <div class="container">

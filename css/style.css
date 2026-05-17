@@ -834,6 +834,15 @@ a {
 }
 
 /* QR Grid for social follow links */
+.qr-main{ display:flex; flex-direction:column; align-items:center; justify-content:center; margin: 8px auto 18px auto; }
+.qr-main .qr-wrap{ position: relative; display: inline-block; }
+.qr-main .qr-main-img{ width: 360px; height: 360px; object-fit: contain; background: white; padding: 8px; border-radius: 10px; }
+.qr-main .qr-main-img{ max-width: 92vw; }
+.qr-main-logo-bg{ position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; width: 84px; height: 84px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.14); z-index: 3; display:flex; align-items:center; justify-content:center; pointer-events:none; overflow:hidden }
+.qr-main-logo-bg img{ width: 76px; height: 76px; object-fit: contain; filter: grayscale(1) brightness(0); }
+
+.qr-main-label{ margin-top: 10px; font-weight: bold; text-align: center; color: white; font-size: 18px; }
+
 .qr-section {
     max-width: 1000px;
     margin: 16px auto 48px auto;
@@ -868,6 +877,13 @@ a {
     .qr-img{ width: 140px; height: 140px; }
 }
 
+@media (max-width: 420px){
+    .qr-main .qr-main-img{ width: 220px; height: 220px; }
+    .qr-main-logo-bg{ width: 56px; height: 56px }
+    .qr-main-logo-bg img{ width: 48px; height: 48px }
+    .qr-main-label{ font-size: 16px }
+}
+
 /* Logo overlays on QR codes */
 .qr-item{ position: relative; }
 .qr-wrap{ position: relative; display: inline-block; }
@@ -899,6 +915,15 @@ a {
 @media (max-width: 420px){
     .qr-logo-bg{ width: 40px; height: 40px; }
     .qr-logo-bg img{ width: 36px; height: 36px; }
+}
+
+/* Override defaults for the main centered QR logo so it's larger */
+.qr-main-logo-bg{ width: 110px; height: 110px; border-radius: 14px; }
+.qr-main-logo-bg img{ width: 98px; height: 98px; }
+
+@media (max-width: 420px){
+    .qr-main-logo-bg{ width: 68px; height: 68px }
+    .qr-main-logo-bg img{ width: 60px; height: 60px }
 }
 
 .social-icon img {
