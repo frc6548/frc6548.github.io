@@ -1,4 +1,4 @@
-[ 
+[
   {
     "id": "shiawassee-shiabots-end-of-season",
     "title": "ShiaBots End of Season Event",
@@ -9,8 +9,7 @@
     "address": "1025 N. Shiawassee St., Corunna, MI 48817",
     "map": "https://www.google.com/maps/place/1025+N+Shiawassee+St,+Corunna,+MI+48817/@42.9954069,-84.1223744,17z/data=!3m1!4b1!4m6!3m5!1s0x882307c7d2b73425:0xa0059e2260c8bbe5!8m2!3d42.995403!4d-84.1197995!16s%2Fg%2F11bw402964?entry=ttu&g_ep=EgoyMDI2MDQxMy4wIKXMDSoASAFQAw%3D%3D",
     "description": "ShiaBots end of season event."
-  }
- ,
+  },
   {
     "id": "ribfest-village-fresh-2026-05-17",
     "title": "Ribfest",
@@ -19,5 +18,33 @@
     "end": "19:00",
     "location": "Village Fresh Market",
     "description": "Ribfest at the Village Fresh Market."
+  },
+  {
+    "id": "ultimate-scrapathon-2026-05-02",
+    "title": "Scrapping Extravagamza",
+    "date": "2026-05-02",
+    "start": "9:00",
+    "end": "14:00",
+    "location": "General city of Perry, Michigan",
+    "map": "https://www.google.com/maps/place/Perry,+MI+48872/@42.822527,-84.2383885,14z/data=!3m1!4b1!4m6!3m5!1s0x88231c445fd15587:0x6fef3b16acd96996!8m2!3d42.8264205!4d-84.2194127!16zL20vMHZxMHE?entry=ttu&g_ep=EgoyMDI2MDQyNi4wIKXMDSoASAFQAw%3D%3D",
+    "description": "Saturday 5/2 will be a scrapping extravaganza!"
+  },
+  {
+    "id": "Alumni-Banquet-Setup-2026-05-02",
+    "title": "Setting up for Alumni Banquet",
+    "date": "2026-05-02",
+    "start": "8:00",
+    "end": "9:00",
+    "location": "Perry High School",
+    "description": "Saturday 5/2 the team will be setting up tables for the Alumni Banquet."
+  },
+  {
+  "id": "Rods-And-Robots-2026-05-30",
+    "title": "Rods And Robots Car Show",
+    "date": "2026-05-30",
+    "start": "10:00",
+    "end": "14:00",
+    "location": "415 E McNeil St, Corunna, MI 48817",
+    "description": "May 30th Rods and Robots car show with various robotics teams on Shiabots."
   }
 ]
