@@ -55,43 +55,45 @@ async function loadSlidesFromJSON(path = '/data/slideshow/info.json') {
         if (dotsContainer) dotsContainer.innerHTML = '';
 
         slides.forEach((s, i) => {
-            const a = document.createElement('a');
-            a.className = 'slidelink';
-            if (s.href) a.href = s.href;
-            a.rel = 'noopener noreferrer';
+            if (s.active){
+                const a = document.createElement('a');
+                a.className = 'slidelink';
+                if (s.href) a.href = s.href;
+                a.rel = 'noopener noreferrer';
 
-            const slide = document.createElement('div');
-            slide.className = 'slide';
-            if (s.active && i === 0) slide.classList.add('active');
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                if (s.active && i === 0) slide.classList.add('active');
 
-            const img = document.createElement('img');
-            img.className = 'slideimage';
-            img.src = s.img || '';
-            img.alt = s.alt || '';
+                const img = document.createElement('img');
+                img.className = 'slideimage';
+                img.src = s.img || '';
+                img.alt = s.alt || '';
 
-            const overlay = document.createElement('div');
-            overlay.className = 'slideoverlay';
+                const overlay = document.createElement('div');
+                overlay.className = 'slideoverlay';
 
-            const h2 = document.createElement('h2');
-            h2.className = 'slideheader';
-            h2.textContent = s.header || '';
+                const h2 = document.createElement('h2');
+                h2.className = 'slideheader';
+                h2.textContent = s.header || '';
 
-            const p = document.createElement('p');
-            p.className = 'slidedescription';
-            p.textContent = s.description || '';
+                const p = document.createElement('p');
+                p.className = 'slidedescription';
+                p.textContent = s.description || '';
 
-            overlay.appendChild(h2);
-            overlay.appendChild(p);
-            slide.appendChild(img);
-            slide.appendChild(overlay);
-            a.appendChild(slide);
-            container.appendChild(a);
+                overlay.appendChild(h2);
+                overlay.appendChild(p);
+                slide.appendChild(img);
+                slide.appendChild(overlay);
+                a.appendChild(slide);
+                container.appendChild(a);
 
-            if (dotsContainer) {
-                const dot = document.createElement('span');
-                dot.className = 'dot';
-                dot.addEventListener('click', () => currentSlide(i));
-                dotsContainer.appendChild(dot);
+                if (dotsContainer) {
+                    const dot = document.createElement('span');
+                    dot.className = 'dot';
+                    dot.addEventListener('click', () => currentSlide(i));
+                    dotsContainer.appendChild(dot);
+                }
             }
         });
 
