@@ -99,6 +99,8 @@ window.addEventListener('DOMContentLoaded', function () {
   var nav = document.createElement('nav');
   nav.className = 'site-nav';
   // Add FTC quick link (left of hamburger)
+
+  /*
   var ftcLink = document.createElement('a');
   ftcLink.className = 'ftc-link';
   ftcLink.href = 'https://frc.phsrambots.org/';
@@ -106,6 +108,7 @@ window.addEventListener('DOMContentLoaded', function () {
   ftcLink.rel = 'noopener noreferrer';
   ftcLink.setAttribute('aria-label', 'Visit FTC site');
   ftcLink.textContent = 'FTC';
+  */
 
   var menuButton = document.createElement('button');
   menuButton.className = 'menu-button';
