@@ -35,6 +35,239 @@ body {
     box-sizing: border-box;
 }
 
+/* Enhanced Typography */
+.container h1 {
+    font-size: 56px;
+    margin: 40px 0 30px 0;
+    font-weight: bold;
+    animation: fadeInUp 0.8s ease-out;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+    font-size: 42px;
+    margin: 35px 0 25px 0;
+    font-weight: bold;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.container > div:not(.sponsorcarousel) {
+    font-size: 18px;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes countUp {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Stats Section */
+.stats-section {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 16px;
+    padding: 50px 30px;
+    margin: 25px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.stat-item {
+    text-align: center;
+    animation: slideInLeft 1s ease-out;
+}
+
+.stat-item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.stat-item:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.stat-item:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.stat-number {
+    font-size: 60px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+    animation: countUp 2s ease-out;
+}
+
+.stat-label {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* FIRST Info Section */
+.first-section {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.08) 100%);
+    border-radius: 16px;
+    padding: 40px 30px;
+    margin: 25px 0;
+    animation: fadeInUp 1s ease-out;
+}
+
+.first-section h3 {
+    font-size: 28px;
+    margin: 0 0 20px 0;
+    font-weight: bold;
+}
+
+.first-section p {
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* FTC Team Section */
+.ftc-section {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+    border-radius: 16px;
+    padding: 40px 30px;
+    margin: 25px 0;
+    border-left: 6px solid rgba(255, 255, 255, 0.4);
+    animation: slideInRight 1s ease-out;
+}
+
+.ftc-section h3 {
+    font-size: 28px;
+    margin: 0 0 20px 0;
+    font-weight: bold;
+    color: #fff;
+}
+
+.ftc-section p {
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.ftc-highlight {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.ftc-section ul {
+    color: rgba(255, 255, 255, 0.95);
+    padding-left: 25px;
+}
+
+.ftc-section ul li {
+    margin-bottom: 12px;
+    animation: slideInLeft 1s ease-out;
+}
+
+.ftc-section ul li:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.ftc-section ul li:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.ftc-section ul li:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.ftc-section ul li:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+@media (max-width: 768px) {
+    .container h1 {
+        font-size: 40px;
+        margin: 30px 0 20px 0;
+    }
+
+    .container h2 {
+        font-size: 32px;
+        margin: 25px 0 15px 0;
+    }
+
+    .container > div:not(.sponsorcarousel) {
+        font-size: 16px;
+    }
+
+    .stats-section {
+        padding: 35px 20px;
+        gap: 20px;
+    }
+
+    .stat-number {
+        font-size: 48px;
+    }
+
+    .stat-label {
+        font-size: 16px;
+    }
+
+    .first-section,
+    .ftc-section {
+        padding: 30px 20px;
+    }
+
+    .first-section h3,
+    .ftc-section h3 {
+        font-size: 24px;
+    }
+
+    .first-section p,
+    .ftc-section p {
+        font-size: 16px;
+    }
+}
+
 .icon-link {
     display: flex;
     align-items: center;
@@ -91,12 +324,38 @@ a {
     white-space: nowrap;
 }
 
+/* Small FTC link to the left of the hamburger */
+.ftc-link{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    margin: 0px px;
+    padding: 0 0px;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+    .ftc-link{ height: 40px; margin: 8px; font-size: 14px; }
+}
+
 /* Hamburger menu styles */
 .site-nav{
     margin-left: auto;
     margin-right: 10px;
     position: relative;
     flex: 0 0 auto;
+}
+
+/* Ensure nav items (FTC link + hamburger) lay out horizontally without overlap */
+.site-nav{
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .menu-button{
@@ -113,6 +372,10 @@ a {
     justify-content: center;
     flex: 0 0 auto;
 }
+
+.menu-button{ z-index: 110003; }
+
+.ftc-link{ z-index: 110002; }
 
 .menu-button .hamburger{
     /* scale hamburger visually to fill the button height */
@@ -568,24 +831,32 @@ a {
     background-color: white;
 }
 
+.about-us {
+    animation: fadeInUp 1s ease-out;
+}
+
 .sponsorsection {
     width: 100%;
-    background-color: white;
-    padding: 40px 0;
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    padding: 60px 20px;
     text-align: center;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+    animation: fadeInUp 1s ease-out;
 }
 
 .sponsorheader {
-    color: black;
-    font-size: 40px;
+    color: #ff4040;
+    font-size: 48px;
     font-weight: bold;
-    margin: 0 0 30px 0;
+    margin: 0 0 15px 0;
+    animation: fadeInUp 0.8s ease-out;
 }
 
 .sponsorcarousel {
     width: 100%;
     overflow: hidden;
-    background-color: white;
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    animation: fadeInUp 1.2s ease-out;
 }
 
 .sponsorimages {
@@ -933,6 +1204,6 @@ a {
 
 /* Helpers to replace inline styles previously used in templates */
 .center-normal { text-align: center; font-weight: normal; margin-top: -20px; }
-.sponsor-subtitle { font-size: 20px; font-weight: normal; margin-bottom: 25px; }
+.sponsor-subtitle { font-size: 22px; font-weight: normal; margin-bottom: 35px; color: #333; animation: fadeInUp 1s ease-out; animation-delay: 0.1s; }
 .sponsorheader.no-margin { margin-bottom: 0; }
 .imageslideshow { width: 100%; }

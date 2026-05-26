@@ -98,6 +98,14 @@ window.addEventListener('DOMContentLoaded', function () {
   // Create a hamburger menu with dropdown links
   var nav = document.createElement('nav');
   nav.className = 'site-nav';
+  // Add FTC quick link (left of hamburger)
+  var ftcLink = document.createElement('a');
+  ftcLink.className = 'ftc-link';
+  ftcLink.href = 'https://frc.phsrambots.org/';
+  ftcLink.target = '_blank';
+  ftcLink.rel = 'noopener noreferrer';
+  ftcLink.setAttribute('aria-label', 'Visit FTC site');
+  ftcLink.textContent = 'FTC';
 
   var menuButton = document.createElement('button');
   menuButton.className = 'menu-button';
@@ -133,6 +141,8 @@ window.addEventListener('DOMContentLoaded', function () {
     menu.appendChild(li);
   });
 
+  // append FTC link first so it appears left of the hamburger
+  nav.appendChild(ftcLink);
   nav.appendChild(menuButton);
   nav.appendChild(menu);
   container.appendChild(nav);
