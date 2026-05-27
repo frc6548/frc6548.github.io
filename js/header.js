@@ -145,7 +145,7 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
   // append FTC link first so it appears left of the hamburger
-  nav.appendChild(ftcLink);
+  //nav.appendChild(ftcLink);
   nav.appendChild(menuButton);
   nav.appendChild(menu);
   container.appendChild(nav);
