@@ -7,7 +7,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+}
+
+/* Make sizing predictable and prevent horizontal overflow */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
 }
 
 @font-face {
@@ -34,6 +43,12 @@ body {
     max-width: 1200px;
     box-sizing: border-box;
 }
+
+/* Prevent adjacent top/bottom elements from doubling vertical gaps
+   by removing the first child's top margin and last child's bottom margin
+   inside a `.container`. This avoids visual "double" spacing. */
+.container > :first-child { margin-top: 0; }
+.container > :last-child { margin-bottom: 0; }
 
 /* Enhanced Typography */
 .container h1 {
@@ -618,10 +633,49 @@ a {
 
 .slide {
     position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 500px;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transform: translateX(100%);
+    transition: transform 0.6s cubic-bezier(.2,.9,.2,1);
+    will-change: transform;
+    z-index: 0;
+}
+
+/* Staging clones used during transition */
+.slide-staging .slide {
+    box-shadow: none;
+    pointer-events: none;
+}
+.slide-staging { pointer-events: none; }
+
+.slide.active {
+    transform: translateX(0);
+    z-index: 1; /* enter below the exiting slide */
+}
+
+/* Classes used to set start/end positions for directional animations */
+.slide.from-right {
+    transform: translateX(100%);
+}
+.slide.from-left {
+    transform: translateX(-100%);
+}
+.slide.exit-left {
+    transform: translateX(-100%);
+    z-index: 2; /* exiting slide above entering slide */
+}
+.slide.exit-right {
+    transform: translateX(100%);
+    z-index: 2;
+}
+
+/* When a slide is active and also has a from-* helper, ensure it's positioned onscreen */
+.slide.active.from-right,
+.slide.active.from-left {
+    transform: translateX(0) !important;
+    z-index: 2;
 }
 
 .superh1{
@@ -718,9 +772,7 @@ a {
     outline: white solid 10px;
 }
 
-.slide.active {
-    opacity: 1;
-}
+/* (removed redundant opacity-only rule) */
 
 .slideoverlay {
     position: absolute;
@@ -831,7 +883,7 @@ a {
     background-color: white;
 }
 
-.about-us {
+.p-anim {
     animation: fadeInUp 1s ease-out;
 }
 
