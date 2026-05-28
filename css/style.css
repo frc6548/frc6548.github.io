@@ -38,32 +38,65 @@ html, body {
 .hd-container{ position: relative; z-index: 110000; }
 
 .container{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: 95%;
     max-width: 1200px;
     box-sizing: border-box;
 }
 
+.legacy-container{
+    margin-bottom: 10px;
+    width: 95%;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+
+.legacy-container h1 {
+    animation: fadeInUp 0.8s ease-out;
+}
+.legacy-container .superh1 {
+    animation: fadeInUp 0.8s ease-out;
+}
+.legacy-container .h2 {
+    animation: fadeInUp 0.8s ease-out;
+}
+.legacy-container .center-normal {
+    animation: fadeInUp 1s ease-out;
+}
+
 /* Prevent adjacent top/bottom elements from doubling vertical gaps
    by removing the first child's top margin and last child's bottom margin
    inside a `.container`. This avoids visual "double" spacing. */
-.container > :first-child { margin-top: 0; }
-.container > :last-child { margin-bottom: 0; }
+.container > :first-child { margin-top: 0 !important; }
+.container > :last-child { margin-bottom: 0 !important; }
 
 /* Enhanced Typography */
 .container h1 {
     font-size: 56px;
-    margin: 40px 0 30px 0;
+    /* increased top spacing per request */
+    margin: 100px 0 40px 0 !important;
     font-weight: bold;
     animation: fadeInUp 0.8s ease-out;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Override h1 styles when using .superh1 class */
+.container h1.superh1 {
+    font-size: 60px !important;
+    margin: 20px 0 20px 0 !important;
+}
+
 .container h2 {
-    font-size: 42px;
-    margin: 35px 0 25px 0;
+    /* restore a slightly larger H2 for readability */
+    font-size: 28px;
+    margin: 40px 0 12px 0 !important;
     font-weight: bold;
     animation: fadeInUp 0.8s ease-out;
+}
+
+/* Override h2 styles for direct children to ensure margin applies */
+.container > h2 {
+    margin: 40px 0 12px 0 !important;
 }
 
 .container > div:not(.sponsorcarousel) {
@@ -71,6 +104,12 @@ html, body {
     line-height: 1.8;
     letter-spacing: 0.5px;
 }
+
+/* Top spacing for animated paragraph blocks (About Us and similar) */
+.container > .p-anim, .container .p-anim { margin-top: 20px !important; margin-bottom: 0 !important; }
+
+/* Remove author-inserted <br> spacing inside containers to avoid accidental large gaps */
+.container br { display: none !important; }
 
 /* Animations */
 @keyframes fadeInUp {
@@ -418,6 +457,16 @@ a {
     z-index: 110002;
 }
 
+/* Keep dropdown within the viewport: small right offset and a max width */
+.menu-dropdown {
+    right: 10px;
+    left: auto;
+    top: calc(100% + 6px); /* place just below the nav/button */
+    max-width: calc(100vw - 20px);
+    box-sizing: border-box;
+    overflow: auto;
+}
+
 .menu-dropdown.open{
     display: block;
 }
@@ -445,6 +494,16 @@ a {
         padding: 0 10px;
     }
     .menu-button .hamburger{ font-size: 28px; }
+
+    /* On very small screens, make the dropdown fit the screen with padding */
+    .menu-dropdown {
+        right: 8px;
+        left: 8px;
+        min-width: auto;
+        width: auto;
+        max-width: none;
+        top: calc(100% + 6px);
+    }
 }
 
 /* Mobile devices (up to 480px) */
@@ -681,7 +740,8 @@ a {
 .superh1{
     font-size: 60px;
     font-weight: bold;
-    margin-bottom: 20px;
+    /* keep centered and increase top spacing, but tight bottom */
+    margin: 20px 0 20px 0 !important;
     text-align: center;
 }
 
@@ -871,15 +931,11 @@ a {
     background-color: rgba(255, 255, 255, 0.7);
 }
 
-.sponsordivider {
-    width: 100%;
-    height: 8px;
-    background-color: white;
-}
 
 .divider {
     width: 100%;
     height: 2px;
+    margin: 40px 0;
     background-color: white;
 }
 
@@ -1255,7 +1311,7 @@ a {
 }
 
 /* Helpers to replace inline styles previously used in templates */
-.center-normal { text-align: center; font-weight: normal; margin-top: -20px; }
+.center-normal { text-align: center; font-weight: normal; margin-top: 12px; font-size: 18px; }
 .sponsor-subtitle { font-size: 22px; font-weight: normal; margin-bottom: 35px; color: #333; animation: fadeInUp 1s ease-out; animation-delay: 0.1s; }
 .sponsorheader.no-margin { margin-bottom: 0; }
 .imageslideshow { width: 100%; }

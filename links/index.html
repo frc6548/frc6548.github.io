@@ -41,67 +41,44 @@
         </div>
 
         <div class="qr-section">
-            <div class="qr-grid">
-                <div class="qr-item">
-                    <div class="qr-wrap">
-                        <a href="https://www.youtube.com/@PHSRambots" target="_blank" rel="noopener noreferrer">
-                            <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&ecc=H&data=https%3A%2F%2Fwww.youtube.com%2F%40PHSRambots" alt="YouTube QR">
-                        </a>
-                        <div class="qr-logo-bg" aria-hidden="true">
-                            <img class="qr-center-logo" src="/data/icons/youtube.webp" alt="">
-                        </div>
-                    </div>
-                    <div class="qr-label">YouTube</div>
-                </div>
-
-                <div class="qr-item">
-                    <div class="qr-wrap">
-                        <a href="https://www.tiktok.com/@phsrambots" target="_blank" rel="noopener noreferrer">
-                            <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&ecc=H&data=https%3A%2F%2Fwww.tiktok.com%2F%40phsrambots" alt="TikTok QR">
-                        </a>
-                        <div class="qr-logo-bg" aria-hidden="true">
-                            <img class="qr-center-logo" src="/data/icons/tiktok.webp" alt="">
-                        </div>
-                    </div>
-                    <div class="qr-label">TikTok</div>
-                </div>
-
-                <div class="qr-item">
-                    <div class="qr-wrap">
-                        <a href="https://www.instagram.com/rambots_6548" target="_blank" rel="noopener noreferrer">
-                            <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&ecc=H&data=https%3A%2F%2Fwww.instagram.com%2Frambots_6548" alt="Instagram QR">
-                        </a>
-                        <div class="qr-logo-bg" aria-hidden="true">
-                            <img class="qr-center-logo" src="/data/icons/instagram.webp" alt="">
-                        </div>
-                    </div>
-                    <div class="qr-label">Instagram</div>
-                </div>
-
-                <div class="qr-item">
-                    <div class="qr-wrap">
-                        <a href="https://www.facebook.com/phsrambots" target="_blank" rel="noopener noreferrer">
-                            <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&ecc=H&data=https%3A%2F%2Fwww.facebook.com%2Fphsrambots" alt="Facebook QR">
-                        </a>
-                        <div class="qr-logo-bg" aria-hidden="true">
-                            <img class="qr-center-logo" src="/data/icons/facebook.webp" alt="">
-                        </div>
-                    </div>
-                    <div class="qr-label">Facebook</div>
-                </div>
-
-                <div class="qr-item">
-                    <div class="qr-wrap">
-                        <a href="https://github.com/frc6548" target="_blank" rel="noopener noreferrer">
-                            <img class="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&ecc=H&data=https%3A%2F%2Fgithub.com%2Ffrc6548" alt="GitHub QR">
-                        </a>
-                        <div class="qr-logo-bg" aria-hidden="true">
-                            <img class="qr-center-logo" src="/data/icons/github.webp" alt="">
-                        </div>
-                    </div>
-                    <div class="qr-label">GitHub</div>
-                </div>
+            <div class="qr-grid" id="qr-grid">
+                <!-- First tile (Website) kept static above; remaining tiles populated from data/links.json -->
             </div>
+            <script>
+                (function(){
+                    fetch('/data/links.json', {cache: 'no-store'}).then(function(r){
+                        if (!r.ok) throw new Error('no-links');
+                        return r.json();
+                    }).then(function(ld){
+                        var grid = document.getElementById('qr-grid');
+                        if (!grid) return;
+                        // skip the first entry (Website) — we populate socials from ld.socials
+                        if (ld && Array.isArray(ld.socials)) {
+                            ld.socials.forEach(function(s){
+                                var item = document.createElement('div'); item.className = 'qr-item';
+                                var wrap = document.createElement('div'); wrap.className = 'qr-wrap';
+                                var a = document.createElement('a'); a.href = s.url || '#'; a.target = '_blank'; a.rel = 'noopener noreferrer';
+                                var qr = document.createElement('img'); qr.className = 'qr-img';
+                                var encoded = encodeURIComponent(s.url || '');
+                                qr.src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&ecc=H&data=' + encoded;
+                                qr.alt = (s.name || 'Link') + ' QR';
+                                a.appendChild(qr);
+                                var logo = document.createElement('div'); logo.className = 'qr-logo-bg'; logo.setAttribute('aria-hidden','true');
+                                if (s.icon) {
+                                    var img = document.createElement('img'); img.className = 'qr-center-logo'; img.src = s.icon; img.alt = '';
+                                    logo.appendChild(img);
+                                }
+                                wrap.appendChild(a);
+                                wrap.appendChild(logo);
+                                var label = document.createElement('div'); label.className = 'qr-label'; label.textContent = s.name || '';
+                                item.appendChild(wrap);
+                                item.appendChild(label);
+                                grid.appendChild(item);
+                            });
+                        }
+                    }).catch(function(){/* ignore */});
+                })();
+            </script>
         </div>
     </div>
 </body>

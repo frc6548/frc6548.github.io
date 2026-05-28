@@ -120,6 +120,7 @@ window.addEventListener('DOMContentLoaded', function () {
   menu.className = 'menu-dropdown';
   menu.setAttribute('role', 'menu');
 
+  // default menu items (will be overwritten by data/links.json when available)
   var items = [
     { text: 'Home', href: '/' },
     { text: 'Calendar', href: '/calendar' },
@@ -158,6 +159,33 @@ window.addEventListener('DOMContentLoaded', function () {
     var opened = menuButton.getAttribute('aria-expanded') === 'true';
     menuButton.setAttribute('aria-expanded', String(!opened));
     menu.classList.toggle('open');
+
+    // If menu opened, position it under the button using fixed coords to avoid layout issues
+    if (menu.classList.contains('open')) {
+      // ensure menu is visible so offsetWidth/height are available
+      // force reflow
+      // eslint-disable-next-line no-unused-expressions
+      menu.offsetWidth;
+      try {
+        var rect = menuButton.getBoundingClientRect();
+        menu.style.position = 'fixed';
+        menu.style.top = (rect.bottom + 6) + 'px';
+        // align right edge of menu with right edge of button when possible
+        var menuW = menu.offsetWidth || 200;
+        var left = rect.right - menuW;
+        if (left < 8) left = 8; // don't go off left edge
+        menu.style.left = left + 'px';
+        menu.style.right = 'auto';
+        menu.style.maxWidth = 'calc(100vw - 16px)';
+      } catch (e) { /* ignore positioning errors */ }
+    } else {
+      // clear inline positioning when closed
+      menu.style.position = '';
+      menu.style.top = '';
+      menu.style.left = '';
+      menu.style.right = '';
+      menu.style.maxWidth = '';
+    }
   });
 
   // Close menu when clicking outside
@@ -165,6 +193,26 @@ window.addEventListener('DOMContentLoaded', function () {
     if (!nav.contains(e.target)) {
       menu.classList.remove('open');
       menuButton.setAttribute('aria-expanded', 'false');
+      // clear inline positioning when closed via outside click
+      menu.style.position = '';
+      menu.style.top = '';
+      menu.style.left = '';
+      menu.style.right = '';
+      menu.style.maxWidth = '';
+    }
+  });
+
+  // Reposition menu on resize if it's open
+  window.addEventListener('resize', function(){
+    if (menu.classList.contains('open')) {
+      try {
+        var rect2 = menuButton.getBoundingClientRect();
+        var menuW2 = menu.offsetWidth || 200;
+        var left2 = rect2.right - menuW2;
+        if (left2 < 8) left2 = 8;
+        menu.style.top = (rect2.bottom + 6) + 'px';
+        menu.style.left = left2 + 'px';
+      } catch (e) {}
     }
   });
 
@@ -178,20 +226,18 @@ window.addEventListener('DOMContentLoaded', function () {
   contactTitle.textContent = 'Contact Us';
   leftSection.appendChild(contactTitle);
 
+  // placeholders; will be replaced if data/links.json is available
   var emailPara = document.createElement('p');
   var emailLink = document.createElement('a');
   emailLink.className = 'email-link';
-  emailLink.dataset.obf = 'phsrambotsATgmailDOTcom';
-  (function(){
-    var decoded = emailLink.dataset.obf.replace('AT','@').replace('DOT','.');
-    emailLink.textContent = decoded;
-    emailLink.href = 'mailto:' + decoded;
-  })();
+  emailLink.textContent = 'Loading...';
+  emailLink.href = 'https://phsrambots.org';
   emailPara.appendChild(emailLink);
   leftSection.appendChild(emailPara);
 
   var phonePara = document.createElement('p');
-  phonePara.textContent = 'P.O Box 78';
+  phonePara.className = 'phone-number';
+  phonePara.textContent = 'Loading...';
   leftSection.appendChild(phonePara);
 
   var addressPara = document.createElement('p');
@@ -290,6 +336,64 @@ window.addEventListener('DOMContentLoaded', function () {
   }
 
   document.body.appendChild(footer);
+  // attempt to load contact/menu data from data/links.json (base64 encoded email/phone)
+  fetch('/data/links.json', {cache: 'no-store'}).then(function(r){
+    if (!r.ok) throw new Error('no-links');
+    return r.json();
+  }).then(function(ld){
+    try {
+      if (ld.menu && Array.isArray(ld.menu) && ld.menu.length) {
+        // rebuild menu items
+        menu.innerHTML = '';
+        ld.menu.forEach(function(it){
+          var li = document.createElement('li'); li.className = 'menu-item';
+          var a = document.createElement('a'); a.className = 'menu-link';
+          a.textContent = it.text || it.label || '';
+          a.href = it.href || '#';
+          if (it.target) { a.target = it.target; if (it.target === '_blank') a.rel = 'noopener noreferrer'; }
+          a.setAttribute('role','menuitem');
+          li.appendChild(a); menu.appendChild(li);
+        });
+      }
+      if (ld.email) {
+        // email expected base64 encoded
+        var decodedEmail = atob(ld.email);
+        emailLink.textContent = decodedEmail;
+        emailLink.href = 'mailto:' + decodedEmail;
+      }
+      if (ld.phone) {
+        var decodedPhone = atob(ld.phone);
+        phonePara.textContent = decodedPhone;
+      }
+          if (ld.location) {
+            try {
+              var decodedLoc = atob(ld.location);
+              addressPara.textContent = decodedLoc;
+            } catch (e) { /* ignore */ }
+          }
+          if (ld.socials && Array.isArray(ld.socials)) {
+            // rebuild social icons
+            socialLinks.innerHTML = '';
+            ld.socials.forEach(function(social){
+              if (!social || !social.url) return;
+              var link = document.createElement('a');
+              link.href = social.url;
+              link.className = 'social-icon';
+              link.title = social.name || '';
+              link.target = '_blank';
+              link.rel = 'noopener noreferrer';
+              var img = document.createElement('img');
+              img.src = social.icon || '';
+              img.alt = social.name || '';
+              img.className = 'social-icon-img';
+              link.appendChild(img);
+              socialLinks.appendChild(link);
+            });
+          }
+    } catch (e) {
+      // ignore parse errors and keep defaults
+    }
+  }).catch(function(){/* ignore */});
 });
 
 (function(){

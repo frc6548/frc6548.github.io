@@ -1,0 +1,21 @@
+{
+  "email": "cGhzcmFtYm90c0BnbWFpbC5jb20=",
+  "phone": "KDUxNykgMjkwLTc1OTM=",
+  "menu": [
+    { "text": "Home", "href": "/" },
+    { "text": "Calendar", "href": "/calendar" },
+    { "text": "Gallery", "href": "/gallery" },
+    { "text": "Donations", "href": "/donate" },
+    { "text": "Links", "href": "/links" },
+    { "text": "Sponsor Form", "href": "/data/sponsors/form.pdf" },
+    { "text": "The Blue Alliance", "href": "https://www.thebluealliance.com/team/6548", "target": "_blank" }
+  ],
+  "location": "UC5PIEJveCA3OCwgUGVycnksIE1pY2hpZ2FuIDQ4ODcy",
+  "socials": [
+    { "name": "YouTube", "icon": "/data/icons/youtube.webp", "url": "https://www.youtube.com/@PHSRambots" },
+    { "name": "TikTok", "icon": "/data/icons/tiktok.webp", "url": "https://www.tiktok.com/@phsrambots" },
+    { "name": "Instagram", "icon": "/data/icons/instagram.webp", "url": "https://www.instagram.com/rambots_6548" },
+    { "name": "Facebook", "icon": "/data/icons/facebook.webp", "url": "https://www.facebook.com/phsrambots" },
+    { "name": "GitHub", "icon": "/data/icons/github.webp", "url": "https://github.com/frc6548" }
+  ]
+}
