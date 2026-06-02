@@ -77,7 +77,6 @@ html, body {
     margin: 100px 0 40px 0 !important;
     font-weight: bold;
     animation: fadeInUp 0.8s ease-out;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Override h1 styles when using .superh1 class */
