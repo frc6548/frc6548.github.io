@@ -15,5 +15,13 @@
     "start": "18:00",
     "end": "~~",
     "description": "Robotics Board meeting"
+  },
+  {
+     "id": "Curwood-Parade-2026-06-05",
+    "title": "Curwood Parade at Curwood Festival",
+    "date": "2026-06-05",
+    "start": "19:00",
+    "end": "19:30",
+    "description": "Multiple Robotics teams in the county are participating in the parade with kickoff at 7pm."
   }
 ]
