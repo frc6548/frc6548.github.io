@@ -1,5 +1,15 @@
 [
   {
+    "id": "leadership-seminar-laingsburg-2026-08-03",
+    "title": "Leadership Seminar",
+    "date": "2026-08-03",
+    "start": "15:00",
+    "end": "20:00",
+    "location": "Laingsburg High School",
+    "description": "Leadership Seminar August 3-5, 3-8PM at Laingsburg High School. 15-hour training with team building, strategic planning, and leadership development. Free; register at https://forms.gle/W1MZxkSReTKgDEFc8.",
+    "details": "FIRST in Michigan friends: Red Thunder Robotics #7166 invites you to this free leadership seminar. Message them if you are interested in becoming a trainer team."
+  },
+  {
     "id": "perry-high-craft-show",
     "title": "Craft Show - Perry High School",
     "date": "2026-08-22",
