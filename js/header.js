@@ -108,6 +108,9 @@ window.addEventListener('DOMContentLoaded', function () {
   menu.className = 'menu-dropdown';
   menu.setAttribute('role', 'menu');
 
+  // callbacks to re-run whenever the menu items are rebuilt (e.g. from data/links.json)
+  var menuRebuildCallbacks = [];
+
   // default menu items (will be overwritten by data/links.json when available)
   var items = [
     { text: 'Home', href: '/' },
@@ -136,6 +139,88 @@ window.addEventListener('DOMContentLoaded', function () {
   nav.appendChild(menuButton);
   nav.appendChild(menu);
   container.appendChild(nav);
+
+  // Notification badge for calendar events the visitor hasn't seen yet
+  (function () {
+    var STORAGE_KEY = 'rambotsSeenEventIds';
+
+    function getSeenIds() {
+      try {
+        var parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (e) { return []; }
+    }
+
+    function markSeen(ids) {
+      try {
+        var seen = getSeenIds();
+        ids.forEach(function (id) {
+          if (seen.indexOf(id) === -1) seen.push(id);
+        });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(seen));
+      } catch (e) { /* ignore */ }
+    }
+
+    function pad2(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function fetchMonthEvents(year, month, cb) {
+      var paths = [
+        '/data/calendar/' + year + '/' + month + '/events.json',
+        '/data/calendar/' + year + '/' + pad2(month) + '/events.json'
+      ];
+      (function tryIdx(i) {
+        if (i >= paths.length) { cb(null); return; }
+        fetch(paths[i], { cache: 'no-store' }).then(function (r) {
+          if (!r.ok) { tryIdx(i + 1); return null; }
+          return r.json();
+        }).then(function (data) {
+          if (data) cb(data); else if (i + 1 < paths.length) tryIdx(i + 1); else cb(null);
+        }).catch(function () { tryIdx(i + 1); });
+      })(0);
+    }
+
+    var now = new Date();
+    fetchMonthEvents(now.getFullYear(), now.getMonth() + 1, function (events) {
+      if (!Array.isArray(events)) return;
+      var ids = events.map(function (e) { return e.id; }).filter(Boolean);
+      if (!ids.length) return;
+
+      var seen = getSeenIds();
+      var newIds = ids.filter(function (id) { return seen.indexOf(id) === -1; });
+      if (!newIds.length) return;
+
+      // Already on the calendar page - count as seen, no badge needed
+      if (location.pathname.replace(/\/+$/, '') === '/calendar') {
+        markSeen(newIds);
+        return;
+      }
+
+      var label = newIds.length > 9 ? '9+' : String(newIds.length);
+
+      var hamburgerEl = menuButton.querySelector('.hamburger');
+      if (hamburgerEl) {
+        var hamBadge = document.createElement('span');
+        hamBadge.className = 'notif-badge notif-badge-hamburger';
+        hamBadge.textContent = label;
+        hamBadge.setAttribute('aria-hidden', 'true');
+        hamburgerEl.appendChild(hamBadge);
+      }
+
+      function addCalendarBadge() {
+        var calLink = menu.querySelector('a[href="/calendar"]');
+        if (!calLink || calLink.querySelector('.notif-badge')) return;
+        var calBadge = document.createElement('span');
+        calBadge.className = 'notif-badge notif-badge-inline';
+        calBadge.textContent = label;
+        calBadge.setAttribute('aria-hidden', 'true');
+        calLink.appendChild(calBadge);
+        calLink.addEventListener('click', function () { markSeen(newIds); });
+      }
+
+      addCalendarBadge();
+      menuRebuildCallbacks.push(addCalendarBadge);
+    });
+  })();
 
   // Insert header container at top of body
   document.body.insertBefore(container, document.body.firstChild);
@@ -340,6 +425,7 @@ window.addEventListener('DOMContentLoaded', function () {
           a.setAttribute('role','menuitem');
           li.appendChild(a); menu.appendChild(li);
         });
+        menuRebuildCallbacks.forEach(function(fn){ fn(); });
       }
       if (ld.email) {
         // email expected base64 encoded
