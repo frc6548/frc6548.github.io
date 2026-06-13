@@ -95,7 +95,6 @@ function showSlide(n, dir = 'next') {
 
 function changeSlide(n) {
     clearTimeout(slideTimer);
-    const old = currentSlideIndex;
     // If currently animating, queue the delta to process later
     if (isAnimating) {
         // coalesce consecutive deltas so rapid clicks don't queue many steps
@@ -143,7 +142,6 @@ function startAutoSlide() {
     // ensure only one auto timer exists
     if (slideTimer) clearTimeout(slideTimer);
     slideTimer = setTimeout(() => {
-        const old = currentSlideIndex;
         // If currently animating, queue the auto-advance instead of forcing show
         if (isAnimating) {
             queuedMoves.push({ type: 'delta', value: 1 });
@@ -248,49 +246,34 @@ loadSlidesFromJSON();
 function finalizePendingTransition() {
     if (!pendingTransition) return;
     const pt = pendingTransition;
-    // If we created a staging area, remove it and update real slides
-    if (pt.stage) {
-        try { pt.stage.remove(); } catch (e) {}
-        const container = document.querySelector('.slidecontainer');
-        const slides = container ? container.querySelectorAll('.slide') : document.querySelectorAll('.slide');
-        if (slides && slides.length) {
-            // remove active from previous real active
-            if (pt.activeIndex >= 0 && slides[pt.activeIndex]) slides[pt.activeIndex].classList.remove('active');
-            // set target active but prevent CSS transition replay by disabling transition briefly
-            const target = slides[pt.idx];
-            if (target) {
-                // temporarily disable transition so the target appears instantly
-                const prevTransition = target.style.transition;
-                const prevTransform = target.style.transform;
-                target.style.transition = 'none';
-                target.style.transform = 'translateX(0)';
-                target.classList.add('active');
-                // force reflow to apply styles immediately
-                // eslint-disable-next-line no-unused-expressions
-                target.offsetWidth;
-                // restore transition after a tick so future animations work
-                setTimeout(() => {
-                    target.style.transition = prevTransition || '';
-                    // clear inline transform to let CSS control positioning normally
-                    target.style.transform = prevTransform || '';
-                }, 30);
-            }
-            // cleanup any helper classes
-            slides.forEach(s => s.classList.remove('from-left', 'from-right', 'exit-left', 'exit-right'));
+    try { pt.stage.remove(); } catch (e) {}
+    const container = document.querySelector('.slidecontainer');
+    const slides = container ? container.querySelectorAll('.slide') : document.querySelectorAll('.slide');
+    if (slides && slides.length) {
+        // remove active from previous real active
+        if (pt.activeIndex >= 0 && slides[pt.activeIndex]) slides[pt.activeIndex].classList.remove('active');
+        // set target active but prevent CSS transition replay by disabling transition briefly
+        const target = slides[pt.idx];
+        if (target) {
+            // temporarily disable transition so the target appears instantly
+            const prevTransition = target.style.transition;
+            const prevTransform = target.style.transform;
+            target.style.transition = 'none';
+            target.style.transform = 'translateX(0)';
+            target.classList.add('active');
+            // force reflow to apply styles immediately
+            // eslint-disable-next-line no-unused-expressions
+            target.offsetWidth;
+            // restore transition after a tick so future animations work
+            setTimeout(() => {
+                target.style.transition = prevTransition || '';
+                // clear inline transform to let CSS control positioning normally
+                target.style.transform = prevTransform || '';
+            }, 30);
         }
-        isAnimating = false;
-        currentSlideIndex = pt.idx;
-    } else {
-        // legacy fallback
-        const { prevIndex, idx, prevEl, nextEl } = pt;
-        if (prevEl && prevIndex !== idx) {
-            prevEl.classList.remove('exit-left', 'exit-right', 'from-left', 'from-right');
-            prevEl.classList.remove('active');
-        }
-        if (nextEl) nextEl.classList.remove('from-left', 'from-right');
-        isAnimating = false;
-        currentSlideIndex = idx;
     }
+    isAnimating = false;
+    currentSlideIndex = pt.idx;
 
     // clear pending and timer
     pendingTransition = null;

@@ -25,8 +25,8 @@
     <script src="/js/header.js"></script>
     <div class="container">
         <h1 class="superh1">Links</h1>
-        <div>We are grateful for all of the support to our team. If you would like to support us, please follow us on as many of our platforms that you can.</div>
-        <br><br><div class="divider"></div><br>
+        <h2 class="center-normal">Follow us on all of our platforms below</h2>
+        <div class="divider"></div>
 
         <div class="qr-main" aria-hidden="false">
             <div class="qr-wrap">
@@ -52,7 +52,6 @@
                     }).then(function(ld){
                         var grid = document.getElementById('qr-grid');
                         if (!grid) return;
-                        // skip the first entry (Website) — we populate socials from ld.socials
                         if (ld && Array.isArray(ld.socials)) {
                             ld.socials.forEach(function(s){
                                 var item = document.createElement('div'); item.className = 'qr-item';

@@ -113,7 +113,7 @@
             b.className='event-badge';
             // show localized short start time on the badge when available
             const shortTime = formatEventShortTime(dateStr, ev);
-            b.textContent = shortTime ? `${shortTime} • ${ev.title}` : ev.title;
+            b.textContent = shortTime ? `${shortTime} - ${ev.title}` : ev.title;
             b.title = ev.title;
             b.onclick = (e)=>{ e.stopPropagation(); openModal(dateStr, ev); };
             list.appendChild(b);

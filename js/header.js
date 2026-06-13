@@ -83,7 +83,6 @@ window.addEventListener('DOMContentLoaded', function () {
   iconLink.appendChild(icon);
 
   var thetitle = document.createElement('h1');
-  thetitle.class = "sitetitle";
   thetitle.textContent = 'Perry RAMBOTS';
   thetitle.className = 'sitetitle';
 
@@ -98,23 +97,12 @@ window.addEventListener('DOMContentLoaded', function () {
   // Create a hamburger menu with dropdown links
   var nav = document.createElement('nav');
   nav.className = 'site-nav';
-  // Add FTC quick link (left of hamburger)
-
-  /*
-  var ftcLink = document.createElement('a');
-  ftcLink.className = 'ftc-link';
-  ftcLink.href = 'https://frc.phsrambots.org/';
-  ftcLink.target = '_blank';
-  ftcLink.rel = 'noopener noreferrer';
-  ftcLink.setAttribute('aria-label', 'Visit FTC site');
-  ftcLink.textContent = 'FTC';
-  */
 
   var menuButton = document.createElement('button');
   menuButton.className = 'menu-button';
   menuButton.setAttribute('aria-expanded', 'false');
   menuButton.setAttribute('aria-label', 'Open menu');
-  menuButton.innerHTML = '<span class="hamburger">☰</span>';
+  menuButton.innerHTML = '<span class="hamburger"><span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span></span>';
 
   var menu = document.createElement('ul');
   menu.className = 'menu-dropdown';
@@ -145,8 +133,6 @@ window.addEventListener('DOMContentLoaded', function () {
     menu.appendChild(li);
   });
 
-  // append FTC link first so it appears left of the hamburger
-  //nav.appendChild(ftcLink);
   nav.appendChild(menuButton);
   nav.appendChild(menu);
   container.appendChild(nav);
@@ -365,31 +351,31 @@ window.addEventListener('DOMContentLoaded', function () {
         var decodedPhone = atob(ld.phone);
         phonePara.textContent = decodedPhone;
       }
-          if (ld.location) {
-            try {
-              var decodedLoc = atob(ld.location);
-              addressPara.textContent = decodedLoc;
-            } catch (e) { /* ignore */ }
-          }
-          if (ld.socials && Array.isArray(ld.socials)) {
-            // rebuild social icons
-            socialLinks.innerHTML = '';
-            ld.socials.forEach(function(social){
-              if (!social || !social.url) return;
-              var link = document.createElement('a');
-              link.href = social.url;
-              link.className = 'social-icon';
-              link.title = social.name || '';
-              link.target = '_blank';
-              link.rel = 'noopener noreferrer';
-              var img = document.createElement('img');
-              img.src = social.icon || '';
-              img.alt = social.name || '';
-              img.className = 'social-icon-img';
-              link.appendChild(img);
-              socialLinks.appendChild(link);
-            });
-          }
+      if (ld.location) {
+        try {
+          var decodedLoc = atob(ld.location);
+          addressPara.textContent = decodedLoc;
+        } catch (e) { /* ignore */ }
+      }
+      if (ld.socials && Array.isArray(ld.socials)) {
+        // rebuild social icons
+        socialLinks.innerHTML = '';
+        ld.socials.forEach(function(social){
+          if (!social || !social.url) return;
+          var link = document.createElement('a');
+          link.href = social.url;
+          link.className = 'social-icon';
+          link.title = social.name || '';
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          var img = document.createElement('img');
+          img.src = social.icon || '';
+          img.alt = social.name || '';
+          img.className = 'social-icon-img';
+          link.appendChild(img);
+          socialLinks.appendChild(link);
+        });
+      }
     } catch (e) {
       // ignore parse errors and keep defaults
     }

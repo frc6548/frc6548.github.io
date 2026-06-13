@@ -1,6 +1,16 @@
+:root {
+    --color-primary: #ff4040;
+    --color-accent: #4dd2ff;
+    --color-success: #6bd66b;
+}
+
 body {
-    background-color: #ff4040; /* Dark orange background */
-    font-family: Afacad; /*Arial, sans-serif*/
+    background-color: #ff4040;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+    font-family: Afacad;
     color: white;
     margin: 0;
     padding: 0;
@@ -8,9 +18,15 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    animation: gridDrift 90s linear infinite;
 }
 
-/* Make sizing predictable and prevent horizontal overflow */
+@media (prefers-reduced-motion: reduce) {
+    body {
+        animation: none;
+    }
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -33,9 +49,9 @@ html, body {
     vertical-align: middle;
     flex-wrap: nowrap;
     gap: 10px;
+    position: relative;
+    z-index: 110000;
 }
-
-.hd-container{ position: relative; z-index: 110000; }
 
 .container{
     margin-bottom: 10px;
@@ -57,43 +73,33 @@ html, body {
 .legacy-container .superh1 {
     animation: fadeInUp 0.8s ease-out;
 }
-.legacy-container .h2 {
-    animation: fadeInUp 0.8s ease-out;
-}
 .legacy-container .center-normal {
     animation: fadeInUp 1s ease-out;
 }
 
-/* Prevent adjacent top/bottom elements from doubling vertical gaps
-   by removing the first child's top margin and last child's bottom margin
-   inside a `.container`. This avoids visual "double" spacing. */
+/* Drop first/last child margins inside .container so adjacent sections don't double their gap */
 .container > :first-child { margin-top: 0 !important; }
 .container > :last-child { margin-bottom: 0 !important; }
 
-/* Enhanced Typography */
 .container h1 {
     font-size: 56px;
-    /* increased top spacing per request */
     margin: 100px 0 40px 0 !important;
     font-weight: bold;
     animation: fadeInUp 0.8s ease-out;
 }
 
-/* Override h1 styles when using .superh1 class */
 .container h1.superh1 {
     font-size: 60px !important;
     margin: 20px 0 20px 0 !important;
 }
 
 .container h2 {
-    /* restore a slightly larger H2 for readability */
     font-size: 28px;
     margin: 40px 0 12px 0 !important;
     font-weight: bold;
     animation: fadeInUp 0.8s ease-out;
 }
 
-/* Override h2 styles for direct children to ensure margin applies */
 .container > h2 {
     margin: 40px 0 12px 0 !important;
 }
@@ -104,13 +110,11 @@ html, body {
     letter-spacing: 0.5px;
 }
 
-/* Top spacing for animated paragraph blocks (About Us and similar) */
 .container > .p-anim, .container .p-anim { margin-top: 20px !important; margin-bottom: 0 !important; }
 
-/* Remove author-inserted <br> spacing inside containers to avoid accidental large gaps */
+/* Authors sometimes add <br> for spacing in content; suppress it so layout stays consistent */
 .container br { display: none !important; }
 
-/* Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -153,7 +157,26 @@ html, body {
     }
 }
 
-/* Stats Section */
+@keyframes gridDrift {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 48px 48px;
+    }
+}
+
+@keyframes statusPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.4;
+        transform: scale(1.4);
+    }
+}
+
 .stats-section {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
     border-radius: 16px;
@@ -167,7 +190,7 @@ html, body {
 
 .stat-item {
     text-align: center;
-    animation: slideInLeft 1s ease-out;
+    animation: fadeInUp 1s ease-out;
 }
 
 .stat-item:nth-child(2) {
@@ -197,7 +220,103 @@ html, body {
     line-height: 1.4;
 }
 
-/* FIRST Info Section */
+.status-container {
+    margin-top: 20px;
+}
+
+.status-card {
+    background: linear-gradient(135deg, rgba(45, 8, 8, 0.9) 0%, rgba(110, 25, 25, 0.9) 100%);
+    border: 1px solid rgba(255, 64, 64, 0.3);
+    border-radius: 16px;
+    padding: 30px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), 0 0 24px rgba(255, 64, 64, 0.15);
+    animation: fadeInUp 1s ease-out;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 8px currentColor;
+    flex-shrink: 0;
+}
+
+.status-live {
+    color: var(--color-primary);
+}
+
+.status-live .status-dot {
+    animation: statusPulse 1.5s ease-in-out infinite;
+}
+
+.status-upcoming {
+    color: var(--color-accent);
+}
+
+.status-offseason {
+    color: var(--color-success);
+}
+
+.status-heading {
+    margin: 0 0 8px 0;
+    font-size: 26px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.status-message {
+    margin: 0 0 16px 0;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.status-record,
+.status-rank,
+.status-next-event {
+    display: inline-block;
+    margin: 0 12px 12px 0;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.status-tba-link {
+    display: inline-block;
+    margin-top: 4px;
+    padding: 10px 22px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 150ms ease, box-shadow 150ms ease;
+}
+
+.status-tba-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.3);
+}
+
 .first-section {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.08) 100%);
     border-radius: 16px;
@@ -218,7 +337,6 @@ html, body {
     margin-bottom: 15px;
 }
 
-/* FTC Team Section */
 .ftc-section {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
     border-radius: 16px;
@@ -277,6 +395,129 @@ html, body {
     animation-delay: 0.4s;
 }
 
+.signup-section {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 16px;
+    padding: 40px 30px;
+    margin: 25px 0;
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.signup-section h3 {
+    font-size: 28px;
+    margin: 0 0 12px 0;
+    font-weight: bold;
+}
+
+.signup-section p {
+    font-size: 17px;
+    line-height: 1.8;
+    margin: 0 0 24px 0;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.signup-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.signup-input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-family: Afacad, Arial, sans-serif;
+    font-size: 16px;
+}
+
+.signup-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.signup-input:focus {
+    outline: none;
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.signup-toggles {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.signup-toggle {
+    flex: 1 1 0;
+    cursor: pointer;
+}
+
+.signup-toggle-input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.signup-toggle-text {
+    display: block;
+    text-align: center;
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+    font-weight: 600;
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.signup-toggle-input:checked + .signup-toggle-text {
+    background: #fff;
+    color: var(--color-primary);
+    border-color: #fff;
+}
+
+.signup-toggle-input:focus-visible + .signup-toggle-text {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.signup-button {
+    display: inline-block;
+    width: 100%;
+    padding: 14px 36px;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    font-family: Afacad, Arial, sans-serif;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15);
+    transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, color 150ms ease;
+}
+
+.signup-button:hover {
+    transform: translateY(-2px);
+    background: #fff;
+    color: var(--color-primary);
+    box-shadow: 0 6px 22px rgba(255, 255, 255, 0.4);
+}
+
 @media (max-width: 768px) {
     .container h1 {
         font-size: 40px;
@@ -306,8 +547,18 @@ html, body {
     }
 
     .first-section,
-    .ftc-section {
+    .ftc-section,
+    .status-card,
+    .signup-section {
         padding: 30px 20px;
+    }
+
+    .status-heading {
+        font-size: 22px;
+    }
+
+    .signup-section h3 {
+        font-size: 24px;
     }
 
     .first-section h3,
@@ -338,7 +589,7 @@ a {
     color: #aa2323;
 }
 
-/* Allow title to shrink so the hamburger doesn't wrap to next line */
+/* Allow the title to shrink so the hamburger doesn't wrap to the next line */
 .sitetitle{
     font-weight: bold;
     color: black;
@@ -351,14 +602,6 @@ a {
     min-width: 0;
 }
 
-.sitetitle{
-    font-weight: bold;
-    color: black;
-    font-size: 100px;
-    margin: 0;
-    white-space: nowrap;
-}
-
 .title-link {
     text-decoration: none;
     color: inherit;
@@ -367,45 +610,11 @@ a {
     cursor: pointer;
 }
 
-.titlelink{
-    color: black;
-    font-weight: bold;
-    font-size: 30px;
-    text-decoration: none;
-    margin-left: auto;
-    margin-right: 10px;
-    white-space: nowrap;
-}
-
-/* Small FTC link to the left of the hamburger */
-.ftc-link{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 80px;
-    margin: 0px px;
-    padding: 0 0px;
-    text-decoration: none;
-    color: black;
-    font-weight: 700;
-    font-size: 20px;
-    white-space: nowrap;
-}
-
-@media (max-width: 480px) {
-    .ftc-link{ height: 40px; margin: 8px; font-size: 14px; }
-}
-
-/* Hamburger menu styles */
 .site-nav{
     margin-left: auto;
     margin-right: 10px;
     position: relative;
     flex: 0 0 auto;
-}
-
-/* Ensure nav items (FTC link + hamburger) lay out horizontally without overlap */
-.site-nav{
     display: flex;
     align-items: center;
     gap: 6px;
@@ -416,7 +625,7 @@ a {
     border: none;
     cursor: pointer;
     color: black;
-    /* Match the site icon vertical size and padding */
+    /* Match .siteicon's height/margin so header items align */
     height: 80px;
     margin: 10px;
     padding: 0 12px;
@@ -424,16 +633,23 @@ a {
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
+    z-index: 110003;
 }
 
-.menu-button{ z-index: 110003; }
+.hamburger{
+    display: flex;
+    flex-direction: column;
+    gap: var(--bar-gap, 6px);
+    width: var(--bar-width, 32px);
+    height: var(--bar-height, 21px);
+}
 
-.ftc-link{ z-index: 110002; }
-
-.menu-button .hamburger{
-    /* scale hamburger visually to fill the button height */
-    font-size: 48px;
-    line-height: 1;
+.hamburger-bar{
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: black;
+    border-radius: 1px;
 }
 
 .menu-button:focus{
@@ -485,14 +701,15 @@ a {
     background: rgba(0,0,0,0.04);
 }
 
-/* Make sure hamburger is usable on small screens */
 @media (max-width: 480px) {
-    .menu-button{ 
+    .menu-button{
         height: 40px;
         margin: 8px;
         padding: 0 10px;
+        --bar-width: 20px;
+        --bar-height: 15px;
+        --bar-gap: 3px;
     }
-    .menu-button .hamburger{ font-size: 28px; }
 
     /* On very small screens, make the dropdown fit the screen with padding */
     .menu-dropdown {
@@ -511,14 +728,9 @@ a {
         height: 40px;
         margin: 8px;
     }
-    
+
     .sitetitle{
         font-size: 32px;
-    }
-    
-    .titlelink{
-        font-size: 14px;
-        margin-right: 5px;
     }
 }
 
@@ -528,20 +740,18 @@ a {
         height: 55px;
         margin: 8px;
     }
-    
+
     .sitetitle{
         font-size: 55px;
     }
-    
-    .titlelink{
-        font-size: 20px;
-        margin-right: 8px;
-    }
+
     .menu-button{
         height: 55px;
         margin: 8px;
+        --bar-width: 24px;
+        --bar-height: 17px;
+        --bar-gap: 4px;
     }
-    .menu-button .hamburger{ font-size: 34px; }
 }
 
 /* Small desktops (769px to 1024px) */
@@ -550,19 +760,18 @@ a {
         height: 70px;
         margin: 10px;
     }
-    
+
     .sitetitle{
         font-size: 70px;
     }
-    
-    .titlelink{
-        font-size: 24px;
-    }
+
     .menu-button{
         height: 70px;
         margin: 10px;
+        --bar-width: 28px;
+        --bar-height: 19px;
+        --bar-gap: 5px;
     }
-    .menu-button .hamburger{ font-size: 42px; }
 }
 
 .slideimage{
@@ -713,29 +922,6 @@ a {
     z-index: 1; /* enter below the exiting slide */
 }
 
-/* Classes used to set start/end positions for directional animations */
-.slide.from-right {
-    transform: translateX(100%);
-}
-.slide.from-left {
-    transform: translateX(-100%);
-}
-.slide.exit-left {
-    transform: translateX(-100%);
-    z-index: 2; /* exiting slide above entering slide */
-}
-.slide.exit-right {
-    transform: translateX(100%);
-    z-index: 2;
-}
-
-/* When a slide is active and also has a from-* helper, ensure it's positioned onscreen */
-.slide.active.from-right,
-.slide.active.from-left {
-    transform: translateX(0) !important;
-    z-index: 2;
-}
-
 .superh1{
     font-size: 60px;
     font-weight: bold;
@@ -760,6 +946,9 @@ a {
     border-radius: 6px;
     cursor: pointer;
     font-family: Afacad;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .calendar-title{ font-size: 22px; font-weight: 700; }
 .calendar-controls{ display:flex; gap:8px; align-items:center; margin-bottom:10px; }
@@ -860,6 +1049,7 @@ a {
 
 .imageslideshow {
     position: relative;
+    width: 100%;
 }
 
 .slidelink {
@@ -889,6 +1079,9 @@ a {
     border-radius: 3px;
     transition: background-color 0.3s;
     z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .slidebutton:hover {
@@ -901,6 +1094,24 @@ a {
 
 .slidebutton.next {
     right: 10px;
+}
+
+/* Border-trick arrow icon, used for slideshow and calendar nav buttons */
+.chevron {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-style: solid;
+    border-color: currentColor;
+    border-width: 0 3px 3px 0;
+}
+
+.chevron-left {
+    transform: rotate(135deg);
+}
+
+.chevron-right {
+    transform: rotate(-45deg);
 }
 
 .slidedots {
@@ -986,10 +1197,6 @@ a {
     100% {
         transform: translateX(calc(var(--scroll-distance) * -1));
     }
-}
-
-.whitelink{
-    color: white;
 }
 
 /* Footer Styles */
@@ -1169,8 +1376,6 @@ a {
 .privacy-close{ display:inline-block; margin-top:12px; padding:8px 12px; background: rgba(0,0,0,0.06); color:#111; border-radius:6px; border:1px solid rgba(0,0,0,0.06); cursor:pointer; font-family: Afacad, Arial, sans-serif; font-size:14px }
 .privacy-close:hover{ background: rgba(0,0,0,0.1) }
 
-/* Screen-reader-only utility: visually hidden but present in DOM for crawlers/AT */
-.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0 }
 .footer-right .disclaimer{ margin-top:12px; font-size:13px; color: rgba(255,255,255,0.9); text-align:right }
 
 /* Donation QR and button side-by-side layout */
@@ -1312,4 +1517,3 @@ a {
 .center-normal { text-align: center; font-weight: normal; margin-top: 12px; font-size: 18px; }
 .sponsor-subtitle { font-size: 22px; font-weight: normal; margin-bottom: 35px; color: #333; animation: fadeInUp 1s ease-out; animation-delay: 0.1s; }
 .sponsorheader.no-margin { margin-bottom: 0; }
-.imageslideshow { width: 100%; }

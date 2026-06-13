@@ -60,12 +60,11 @@
     const ctrl = document.createElement('button');
     ctrl.className = 'livestream-toggle';
     ctrl.title = 'Minimize live stream';
-    ctrl.textContent = '–';
+    ctrl.textContent = '-';
 
     ctrl.addEventListener('click', ()=>{
       container.classList.toggle('minimized');
-      // change button to + when minimized
-      ctrl.textContent = container.classList.contains('minimized') ? '+' : '–';
+      ctrl.textContent = container.classList.contains('minimized') ? '+' : '-';
     });
 
     container.appendChild(bar);

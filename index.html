@@ -51,12 +51,14 @@
     <script src="/js/slideshow.js"></script>
     <script src="/js/sponsors.js"></script>
     <script src="/js/stats.js"></script>
+    <script src="/js/team-status.js"></script>
+    <script src="/js/signup.js"></script>
     <div class="imageslideshow">
         <div class="slidecontainer">
             <!-- Slides will be populated from data/slideshow/info.json -->
         </div>
-        <button class="slidebutton prev" onclick="changeSlide(-1)">❮</button>
-        <button class="slidebutton next" onclick="changeSlide(1)">❯</button>
+        <button class="slidebutton prev" onclick="changeSlide(-1)" aria-label="Previous slide"><span class="chevron chevron-left"></span></button>
+        <button class="slidebutton next" onclick="changeSlide(1)" aria-label="Next slide"><span class="chevron chevron-right"></span></button>
         <div class="slidedots">
             <!-- Dots populated by slideshow.js when loading JSON -->
         </div>
@@ -69,19 +71,19 @@
     <div class="container">
         <div class="stats-section">
             <div class="stat-item" data-stat="yearsOfCompetition">
-                <div class="stat-number">—</div>
+                <div class="stat-number">0</div>
                 <div class="stat-label">Years of Competition</div>
             </div>
             <div class="stat-item" data-stat="worldChampionships">
-                <div class="stat-number">—</div>
+                <div class="stat-number">0</div>
                 <div class="stat-label">World Championship</div>
             </div>
             <div class="stat-item" data-stat="teamMembers">
-                <div class="stat-number">—</div>
+                <div class="stat-number">0</div>
                 <div class="stat-label">Team Members</div>
             </div>
             <div class="stat-item" data-stat="communityPartners">
-                <div class="stat-number">—</div>
+                <div class="stat-number">0</div>
                 <div class="stat-label">Community Partners</div>
             </div>
         </div>
@@ -92,7 +94,7 @@
             <h3>About FIRST</h3>
             <p><strong>FIRST (For Inspiration and Recognition of Science and Technology)</strong> is a global nonprofit organization that designs accessible, innovative programs that motivate young people to pursue opportunities in science, technology, engineering, and mathematics (STEM).</p>
             <p>Through FIRST programs, students engage in exciting challenges that build problem-solving and collaboration skills. Our FRC (FIRST Robotics Competition) team designs and builds robots to compete against other teams in intense, high-energy matches. Every season brings new challenges, new learning opportunities, and the chance to showcase innovation and teamwork on a regional and national scale.</p>
-            <p>FIRST isn't just about building robots—it's about building the next generation of leaders, engineers, and innovators who will shape our future.</p>
+            <p>FIRST isn't just about building robots. It's about building the next generation of leaders, engineers, and innovators who will shape our future.</p>
         </div>
     </div>
 
@@ -164,4 +166,28 @@
             As the Perry RAMBOTS, we strive to improve each season, pushing our limits while representing our school and community with pride.
         </div>
 </div>
+    <div class="container" style="margin-top: 20px;">
+        <div class="signup-section">
+            <h3>Want to Join Us?</h3>
+            <p>We're always looking for new students, mentors, and volunteers. Fill in a few details and we'll take you to the rest of the sign up form!</p>
+            <form class="signup-form" id="signup-form">
+                <div class="signup-fields">
+                    <input type="text" class="signup-input" id="signup-name" placeholder="Name" autocomplete="name">
+                    <input type="email" class="signup-input" id="signup-email" placeholder="Email" autocomplete="email">
+                    <input type="tel" class="signup-input" id="signup-phone" placeholder="Phone Number" autocomplete="tel">
+                </div>
+                <div class="signup-toggles">
+                    <label class="signup-toggle">
+                        <input type="radio" name="program" value="frc" class="signup-toggle-input" checked>
+                        <span class="signup-toggle-text">FRC (Grades 7-12)</span>
+                    </label>
+                    <label class="signup-toggle">
+                        <input type="radio" name="program" value="ftc" class="signup-toggle-input">
+                        <span class="signup-toggle-text">FTC (Middle School)</span>
+                    </label>
+                </div>
+                <button type="submit" class="signup-button">Sign Up Now</button>
+            </form>
+        </div>
+    </div>
 </body>
