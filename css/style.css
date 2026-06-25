@@ -2,10 +2,28 @@
     --color-primary: #ff4040;
     --color-accent: #4dd2ff;
     --color-success: #6bd66b;
+    --mouse-x: 50vw;
+    --mouse-y: 50vh;
+    --parallax-x: 0px;
+    --parallax-y: 0px;
+    --parallax-rot-y: 0deg;
+    --parallax-rot-x: 0deg;
+}
+
+@keyframes bodyBreath {
+    0%, 100% { background-color: #ff4040; }
+    50% { background-color: #d42020; }
 }
 
 body {
     background-color: #ff4040;
+    /* Subtle grid on top of background-color; spotlight follows --mouse-x/--mouse-y set by JS */
+    background-image:
+        radial-gradient(900px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(255, 220, 180, 0.08), transparent 45%),
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 100% 100%, 50px 50px, 50px 50px;
+    background-attachment: fixed, scroll, scroll;
     font-family: Afacad;
     color: white;
     margin: 0;
@@ -14,6 +32,7 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    animation: bodyBreath 9s ease-in-out infinite;
 }
 
 *, *::before, *::after {
@@ -75,6 +94,7 @@ html, body {
     margin: 100px 0 40px 0 !important;
     font-weight: bold;
     animation: fadeInUp 0.8s ease-out;
+    text-shadow: 0 0 40px rgba(255, 160, 160, 0.45), 0 2px 8px rgba(0,0,0,0.18);
 }
 
 .container h1.superh1 {
@@ -167,6 +187,12 @@ html, body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
     animation: fadeInUp 1s ease-out;
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: box-shadow 0.4s ease, transform 0.3s ease;
+}
+.stats-section:hover {
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.13), 0 20px 60px rgba(0,0,0,0.25), 0 0 50px rgba(255,255,255,0.06);
+    transform: translateY(-2px);
 }
 
 .stat-item {
@@ -192,6 +218,7 @@ html, body {
     color: #fff;
     margin-bottom: 10px;
     animation: countUp 2s ease-out;
+    text-shadow: 0 0 24px rgba(255, 210, 210, 0.65);
 }
 
 .stat-label {
@@ -205,6 +232,11 @@ html, body {
     margin-top: 20px;
 }
 
+@keyframes statusGlow {
+    0%, 100% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), 0 0 24px rgba(255, 64, 64, 0.15); }
+    50% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), 0 0 50px rgba(255, 64, 64, 0.45), 0 0 0 1px rgba(255,64,64,0.25); }
+}
+
 .status-card {
     background: linear-gradient(135deg, rgba(45, 8, 8, 0.9) 0%, rgba(110, 25, 25, 0.9) 100%);
     border: 1px solid rgba(255, 64, 64, 0.3);
@@ -212,7 +244,11 @@ html, body {
     padding: 30px;
     backdrop-filter: blur(6px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), 0 0 24px rgba(255, 64, 64, 0.15);
-    animation: fadeInUp 1s ease-out;
+    animation: fadeInUp 1s ease-out, statusGlow 3s ease-in-out 1s infinite;
+    transition: transform 0.3s ease;
+}
+.status-card:hover {
+    transform: translateY(-2px);
 }
 
 .status-badge {
@@ -304,6 +340,12 @@ html, body {
     padding: 40px 30px;
     margin: 25px 0;
     animation: fadeInUp 1s ease-out;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: box-shadow 0.4s ease, transform 0.3s ease;
+}
+.first-section:hover {
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 20px 50px rgba(0,0,0,0.25), 0 0 40px rgba(255,255,255,0.05);
+    transform: translateY(-2px);
 }
 
 .first-section h3 {
@@ -325,6 +367,12 @@ html, body {
     margin: 25px 0;
     border-left: 6px solid rgba(255, 255, 255, 0.4);
     animation: slideInRight 1s ease-out;
+    transition: box-shadow 0.4s ease, transform 0.3s ease, border-left-color 0.3s ease;
+}
+.ftc-section:hover {
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 20px 50px rgba(0,0,0,0.25), 0 0 40px rgba(255,255,255,0.06);
+    transform: translateY(-2px);
+    border-left-color: rgba(255,255,255,0.75);
 }
 
 .ftc-section h3 {
@@ -383,6 +431,12 @@ html, body {
     margin: 25px 0;
     text-align: center;
     animation: fadeInUp 1s ease-out;
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: box-shadow 0.4s ease, transform 0.3s ease;
+}
+.signup-section:hover {
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.13), 0 20px 60px rgba(0,0,0,0.25), 0 0 50px rgba(255,255,255,0.06);
+    transform: translateY(-2px);
 }
 
 .signup-section h3 {
@@ -490,13 +544,31 @@ html, body {
     cursor: pointer;
     box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15);
     transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, color 150ms ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.signup-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+    border-radius: 999px;
 }
 
 .signup-button:hover {
     transform: translateY(-2px);
     background: #fff;
     color: var(--color-primary);
-    box-shadow: 0 6px 22px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 6px 28px rgba(255, 255, 255, 0.5);
+}
+
+.signup-button:hover::after {
+    left: 100%;
 }
 
 @media (max-width: 768px) {
@@ -790,6 +862,9 @@ a {
     height: 500px;
     object-fit: cover;
     filter: brightness(50%);
+    /* scale(1.15) gives edge buffer so rotation + drift never expose a gap */
+    transform: scale(1.15) rotateY(var(--parallax-rot-y, 0deg)) rotateX(var(--parallax-rot-x, 0deg)) translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
+    transition: transform 2.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .slidecontainer {
@@ -915,6 +990,8 @@ a {
     top: 0;
     width: 100%;
     height: 500px;
+    overflow: hidden;
+    perspective: 1000px;
     transform: translateX(100%);
     transition: transform 0.6s cubic-bezier(.2,.9,.2,1);
     will-change: transform;
@@ -939,6 +1016,7 @@ a {
     /* keep centered and increase top spacing, but tight bottom */
     margin: 20px 0 20px 0 !important;
     text-align: center;
+    text-shadow: 0 0 40px rgba(255, 160, 160, 0.45), 0 2px 8px rgba(0,0,0,0.18);
 }
 
 /* Calendar widget styles */
@@ -1035,27 +1113,56 @@ a {
 
 .slideoverlay {
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 40%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+    /* Extend 30px past the right edge and 20px past top/bottom so the parallax
+       shift (max ±24px horizontal, ±16px vertical) never exposes a gap */
+    right: -30px;
+    top: -20px;
+    bottom: -20px;
+    width: calc(55% + 30px);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.65));
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-right: 20px;
+    padding-right: 70px;
+    padding-left: 20px;
     color: white;
+    /* Larger rotation + drift than the image makes the text appear at a closer depth */
+    transform: rotateY(calc(var(--parallax-rot-y, 0deg) * 1.8)) rotateX(calc(var(--parallax-rot-x, 0deg) * 1.8)) translate(calc(var(--parallax-x, 0px) * 2), calc(var(--parallax-y, 0px) * 2));
+    transition: transform 2.0s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .slideheader {
     margin: 0;
-    font-size: 32px;
+    font-size: 52px;
     font-weight: bold;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+    line-height: 1.1;
+    letter-spacing: -0.5px;
 }
 
 .slidedescription {
-    margin: 10px 0 0 0;
-    font-size: 16px;
+    margin: 14px 0 0 0;
+    font-size: 20px;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .slideoverlay {
+        width: calc(70% + 30px);
+        padding-right: 50px;
+    }
+    .slideheader { font-size: 28px; }
+    .slidedescription { font-size: 15px; }
+}
+
+@media (max-width: 480px) {
+    .slideoverlay {
+        width: calc(85% + 30px);
+        padding-right: 44px;
+    }
+    .slideheader { font-size: 22px; }
+    .slidedescription { font-size: 13px; margin-top: 8px; }
 }
 
 .imageslideshow {
@@ -1528,3 +1635,42 @@ a {
 .center-normal { text-align: center; font-weight: normal; margin-top: 12px; font-size: 18px; }
 .sponsor-subtitle { font-size: 22px; font-weight: normal; margin-bottom: 35px; color: #333; animation: fadeInUp 1s ease-out; animation-delay: 0.1s; }
 .sponsorheader.no-margin { margin-bottom: 0; }
+
+/* Slideshow scan-line sweep */
+@keyframes slideScan {
+    0%   { transform: translateY(-4px); opacity: 0; }
+    5%   { opacity: 1; }
+    90%  { opacity: 0.5; }
+    100% { transform: translateY(500px); opacity: 0; }
+}
+
+.slidecontainer::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.45) 50%, transparent 100%);
+    animation: slideScan 7s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 6;
+}
+
+/* Scroll-reveal: added via JS, removed when in view */
+.scroll-hidden {
+    opacity: 0;
+    transform: translateY(32px);
+    animation: none !important;
+    transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.scroll-hidden.scroll-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger delays for stat items when revealed via scroll */
+.scroll-hidden.scroll-visible.stat-item { transition-delay: 0s; }
+.scroll-hidden.scroll-visible.stat-item:nth-child(2) { transition-delay: 0.1s; }
+.scroll-hidden.scroll-visible.stat-item:nth-child(3) { transition-delay: 0.2s; }
+.scroll-hidden.scroll-visible.stat-item:nth-child(4) { transition-delay: 0.3s; }
