@@ -891,6 +891,32 @@ a {
     pointer-events: none;
 }
 
+/* iframe used as transparent foreground — 3D content rendered over a bg image */
+.slidefg-wrap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 500px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.4s ease;
+}
+
+.slidefg-wrap.loaded {
+    opacity: 1;
+}
+
+.slidefg-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    pointer-events: none;
+}
+
 .slideforeground {
     position: absolute;
     left: 0;

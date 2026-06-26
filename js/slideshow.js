@@ -5,6 +5,8 @@ let queuedMoves = [];
 const TRANSITION_MS = 700;
 let slideAnimationTimer = null;
 let pendingTransition = null;
+let autoPaused = false;
+let pauseTimer = null;
 
 function showSlide(n, dir = 'next') {
     const container = document.querySelector('.slidecontainer');
@@ -57,6 +59,8 @@ function showSlide(n, dir = 'next') {
             img.src = wrap.dataset.poster || '';
             iframe.replaceWith(img);
         });
+        // Foreground iframes aren't needed during clone transitions — bg image carries the visual
+        c.querySelectorAll('.slidefg-wrap').forEach(wrap => { wrap.style.display = 'none'; });
         c.style.position = 'absolute';
         c.style.left = 0;
         c.style.top = 0;
@@ -76,6 +80,20 @@ function showSlide(n, dir = 'next') {
     stage.appendChild(currClone);
     stage.appendChild(nextClone);
     container.appendChild(stage);
+
+    // Move the real fg-wrap (live iframe) from the incoming slide into the incoming clone
+    // so the 3D content stays visible during the transition instead of being hidden.
+    let movedFgWrap = null;
+    {
+        const incomingClone = dir === 'next' ? nextClone : prevClone;
+        const incomingSlideEl = dir === 'next' ? slides[nextOfActive] : slides[prevOfActive];
+        const clonedFg = incomingClone.querySelector('.slidefg-wrap');
+        const realFg = incomingSlideEl.querySelector('.slidefg-wrap');
+        if (clonedFg && realFg) {
+            clonedFg.replaceWith(realFg);
+            movedFgWrap = { el: realFg, slideEl: incomingSlideEl };
+        }
+    }
 
     // update link/dot active classes (preview of target)
     if (slidelinks && slidelinks.length) slidelinks.forEach(link => link.classList.remove('active'));
@@ -99,12 +117,18 @@ function showSlide(n, dir = 'next') {
 
     // schedule finalize via pendingTransition
     if (slideAnimationTimer) { clearTimeout(slideAnimationTimer); slideAnimationTimer = null; }
-    pendingTransition = { stage, activeIndex: active, idx };
+    pendingTransition = { stage, activeIndex: active, idx, movedFgWrap };
     slideAnimationTimer = setTimeout(finalizePendingTransition, TRANSITION_MS + 60);
 }
 
-function changeSlide(n) {
+function pauseAutoSlide() {
     clearTimeout(slideTimer);
+    clearTimeout(pauseTimer);
+    autoPaused = true;
+    pauseTimer = setTimeout(() => { autoPaused = false; startAutoSlide(); }, 30000);
+}
+
+function changeSlide(n) {
     // If currently animating, queue the delta to process later
     if (isAnimating) {
         // coalesce consecutive deltas so rapid clicks don't queue many steps
@@ -114,20 +138,17 @@ function changeSlide(n) {
         } else {
             queuedMoves.push({ type: 'delta', value: n });
         }
-        // restart auto-slide timer even when queuing
-        startAutoSlide();
         // expedite current animation slightly so queued move happens sooner
         expediteTransition();
-        return;
+    } else {
+        currentSlideIndex += n;
+        const dir = n >= 0 ? 'next' : 'prev';
+        showSlide(currentSlideIndex, dir);
     }
-    currentSlideIndex += n;
-    const dir = n >= 0 ? 'next' : 'prev';
-    showSlide(currentSlideIndex, dir);
-    startAutoSlide();
+    pauseAutoSlide();
 }
 
 function currentSlide(n) {
-    clearTimeout(slideTimer);
     const old = currentSlideIndex;
     // If animating, queue the absolute target
     if (isAnimating) {
@@ -138,25 +159,23 @@ function currentSlide(n) {
         } else {
             queuedMoves.push({ type: 'target', value: n });
         }
-        startAutoSlide();
         expediteTransition();
-        return;
+    } else {
+        currentSlideIndex = n;
+        const dir = n >= old ? 'next' : 'prev';
+        showSlide(currentSlideIndex, dir);
     }
-    currentSlideIndex = n;
-    const dir = n >= old ? 'next' : 'prev';
-    showSlide(currentSlideIndex, dir);
-    startAutoSlide();
+    pauseAutoSlide();
 }
 
 function startAutoSlide() {
-    // ensure only one auto timer exists
+    if (autoPaused) return;
     if (slideTimer) clearTimeout(slideTimer);
     slideTimer = setTimeout(() => {
         // If currently animating, queue the auto-advance instead of forcing show
         if (isAnimating) {
             queuedMoves.push({ type: 'delta', value: 1 });
             expediteTransition();
-            // schedule next auto-advance
             startAutoSlide();
             return;
         }
@@ -188,10 +207,29 @@ async function loadSlidesFromJSON(path = '/data/slideshow/info.json') {
                 slide.className = 'slide';
                 if (s.active && i === 0) slide.classList.add('active');
 
-                if (s.iframe) {
+                if (s.iframe && s.img) {
+                    // Background image + transparent iframe foreground (3D overlay)
+                    const bgImg = document.createElement('img');
+                    bgImg.className = 'slideimage';
+                    bgImg.src = s.img;
+                    bgImg.alt = s.alt || '';
+                    slide.appendChild(bgImg);
+                    const wrap = document.createElement('div');
+                    wrap.className = 'slidefg-wrap';
+                    const iframe = document.createElement('iframe');
+                    iframe.className = 'slidefg-iframe';
+                    iframe.src = s.iframe;
+                    iframe.setAttribute('allow', 'autoplay; encrypted-media');
+                    iframe.setAttribute('tabindex', '-1');
+                    iframe.setAttribute('aria-hidden', 'true');
+                    iframe.addEventListener('load', () => {
+                        setTimeout(() => wrap.classList.add('loaded'), 1000);
+                    });
+                    wrap.appendChild(iframe);
+                    slide.appendChild(wrap);
+                } else if (s.iframe) {
                     const wrap = document.createElement('div');
                     wrap.className = 'slidebg-wrap';
-                    if (s.img) wrap.dataset.poster = s.img;
                     const iframe = document.createElement('iframe');
                     iframe.className = 'slidebg-iframe';
                     iframe.src = s.iframe;
@@ -278,6 +316,10 @@ loadSlidesFromJSON();
 function finalizePendingTransition() {
     if (!pendingTransition) return;
     const pt = pendingTransition;
+    // Restore the real fg-wrap to its slide before the stage is destroyed
+    if (pt.movedFgWrap) {
+        try { pt.movedFgWrap.slideEl.appendChild(pt.movedFgWrap.el); } catch (_) {}
+    }
     try { pt.stage.remove(); } catch (e) {}
     const container = document.querySelector('.slidecontainer');
     const slides = container ? container.querySelectorAll('.slide') : document.querySelectorAll('.slide');
@@ -327,6 +369,28 @@ function finalizePendingTransition() {
         startAutoSlide();
     }
 }
+
+
+// Forward mouse proximity to slidefg iframes — they can't track the mouse themselves
+// because pointer-events:none is required for the slide interaction to work.
+(function () {
+    const post = (proximity) => {
+        document.querySelectorAll('.slidefg-iframe').forEach(iframe => {
+            try { iframe.contentWindow.postMessage({ type: 'proximity', value: proximity }, '*'); } catch (_) {}
+        });
+    };
+    document.addEventListener('mousemove', (e) => {
+        const container = document.querySelector('.slidecontainer');
+        if (!container) return;
+        const rect = container.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = e.clientX - cx, dy = e.clientY - cy;
+        const maxDist = Math.sqrt((rect.width / 2) ** 2 + (rect.height / 2) ** 2);
+        post(Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / maxDist));
+    });
+    document.addEventListener('mouseleave', () => post(0));
+}());
 
 function expediteTransition() {
     // shorten the pending transition timeout so queued moves happen sooner

@@ -11,6 +11,7 @@
   {
     "href": "https://www.thebluealliance.com/team/6548",
     "img": "/data/slideshow/blue.webp",
+    "fg":"/data/slideshow/blue fore.webp",
     "alt": "Photo of Robot in Reefscape 2025",
     "header": "The Blue Alliance",
     "description": "Visit our blue alliance page to see how we perform and play",
@@ -19,7 +20,7 @@
   {
     "href": "https://www.youtube.com/watch?v=1FV8Z4ZVC18",
     "iframe": "/robots/2026-artemis-ii/",
-    "img": "/data/slideshow/7A914DBF-B4A9-49F4-A532-381F5372D38D.webp",
+    "img": "/data/slideshow/realistic space.webp",
     "alt": "ARTEMIS Robot",
     "header": "2026: ARTEMIS II",
     "description": "Check out our 2026 robot, Artemis II",
@@ -28,6 +29,7 @@
   {
     "href": "https://www.youtube.com/playlist?list=PLMiwgMvPJVNyQyo3v6IfAfSgRb1O_aLjw",
     "img": "/data/slideshow/match.webp",
+    "fg": "/data/slideshow/match fore.webp",
     "alt": "Live Match Photo",
     "header": "Our Matches",
     "description": "Watch our matches on YouTube",
@@ -36,6 +38,7 @@
   {
     "href": "https://www.youtube.com/@PHSRambots",
     "img": "/data/slideshow/banner.webp",
+    "fg":"/data/slideshow/banner fore.webp",
     "alt": "YouTube Channel",
     "header": "YouTube Channel",
     "description": "Subscribe to our YouTube channel for match videos and highlights",
