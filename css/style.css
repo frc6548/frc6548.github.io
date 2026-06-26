@@ -1150,17 +1150,19 @@ a {
 
 .slideoverlay {
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 55%;
-    height: 100%;
+    right: -80px;
+    top: -20px;
+    bottom: -20px;
+    width: calc(55% + 80px);
     background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.65));
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-right: 40px;
+    padding-right: 120px;
     padding-left: 20px;
     color: white;
+    transform: rotateY(calc(var(--parallax-rot-y, 0deg) * 1.8)) rotateX(calc(var(--parallax-rot-x, 0deg) * 1.8)) translate(calc(var(--parallax-x, 0px) * 2), calc(var(--parallax-y, 0px) * 2));
+    transition: transform 2.0s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .slideheader {
@@ -1181,8 +1183,8 @@ a {
 
 @media (max-width: 768px) {
     .slideoverlay {
-        width: 70%;
-        padding-right: 20px;
+        width: calc(70% + 80px);
+        padding-right: 100px;
     }
     .slideheader { font-size: 28px; }
     .slidedescription { font-size: 15px; }
@@ -1190,8 +1192,8 @@ a {
 
 @media (max-width: 480px) {
     .slideoverlay {
-        width: 85%;
-        padding-right: 14px;
+        width: calc(85% + 80px);
+        padding-right: 94px;
     }
     .slideheader { font-size: 22px; }
     .slidedescription { font-size: 13px; margin-top: 8px; }
