@@ -901,6 +901,7 @@ a {
     pointer-events: none;
     opacity: 0;
     transition: opacity 1.4s ease;
+    z-index: 1;
 }
 
 .slidefg-wrap.loaded {
@@ -1179,6 +1180,7 @@ a {
     right: -250px;
     top: -20px;
     bottom: -20px;
+    z-index: 2;
     width: calc(55% + 250px);
     background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.65));
     display: flex;

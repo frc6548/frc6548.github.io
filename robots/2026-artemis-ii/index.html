@@ -112,7 +112,7 @@ loader.load('/data/artemis2.glb', (gltf) => {
     baseScale = scale;
     robot.scale.setScalar(scale);
     robot.position.copy(center.multiplyScalar(-scale));
-    robot.position.x -= 0.5;
+    robot.position.x -= 1.2;
     robot.traverse(child => {
         if (!child.isMesh) return;
         child.castShadow = true;
@@ -127,7 +127,7 @@ loader.load('/data/artemis2.glb', (gltf) => {
     });
     scene.add(robot);
     const worldBox = new THREE.Box3().setFromObject(robot);
-    shadowPlane.position.set(-0.5, worldBox.min.y - 0.05, 0);
+    shadowPlane.position.set(robot.position.x, worldBox.min.y - 0.05, 0);
     canvas.style.opacity = '1';
 });
 
