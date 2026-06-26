@@ -47,6 +47,16 @@ function showSlide(n, dir = 'next') {
     const makeClone = (slideEl, xPercent) => {
         const c = slideEl.cloneNode(true);
         c.classList.add('clone');
+        // Swap any iframe backgrounds with their poster image so the clone
+        // doesn't trigger an iframe reload/flash during the transition.
+        c.querySelectorAll('.slidebg-wrap').forEach(wrap => {
+            const iframe = wrap.querySelector('.slidebg-iframe');
+            if (!iframe) return;
+            const img = document.createElement('img');
+            img.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;';
+            img.src = wrap.dataset.poster || '';
+            iframe.replaceWith(img);
+        });
         c.style.position = 'absolute';
         c.style.left = 0;
         c.style.top = 0;
@@ -178,10 +188,25 @@ async function loadSlidesFromJSON(path = '/data/slideshow/info.json') {
                 slide.className = 'slide';
                 if (s.active && i === 0) slide.classList.add('active');
 
-                const img = document.createElement('img');
-                img.className = 'slideimage';
-                img.src = s.img || '';
-                img.alt = s.alt || '';
+                if (s.iframe) {
+                    const wrap = document.createElement('div');
+                    wrap.className = 'slidebg-wrap';
+                    if (s.img) wrap.dataset.poster = s.img;
+                    const iframe = document.createElement('iframe');
+                    iframe.className = 'slidebg-iframe';
+                    iframe.src = s.iframe;
+                    iframe.setAttribute('allow', 'autoplay; encrypted-media');
+                    iframe.setAttribute('tabindex', '-1');
+                    iframe.setAttribute('aria-hidden', 'true');
+                    wrap.appendChild(iframe);
+                    slide.appendChild(wrap);
+                } else {
+                    const img = document.createElement('img');
+                    img.className = 'slideimage';
+                    img.src = s.img || '';
+                    img.alt = s.alt || '';
+                    slide.appendChild(img);
+                }
 
                 const overlay = document.createElement('div');
                 overlay.className = 'slideoverlay';
@@ -196,7 +221,14 @@ async function loadSlidesFromJSON(path = '/data/slideshow/info.json') {
 
                 overlay.appendChild(h2);
                 overlay.appendChild(p);
-                slide.appendChild(img);
+                if (s.fg) {
+                    const fg = document.createElement('img');
+                    fg.className = 'slideforeground';
+                    fg.src = s.fg;
+                    fg.alt = '';
+                    fg.draggable = false;
+                    slide.appendChild(fg);
+                }
                 slide.appendChild(overlay);
                 a.appendChild(slide);
                 container.appendChild(a);

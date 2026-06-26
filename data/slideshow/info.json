@@ -2,6 +2,7 @@
     {
     "href": "https://forms.gle/Rc3GtHm5FaQgPyRFA",
     "img": "/data/slideshow/signup.webp",
+    "fg":"/data/slideshow/signup fore.webp",
     "alt": "Screenshot of Signup Form",
     "header": "Join Us",
     "description": "Sign up to join our FRC and upcoming FTC teams for the 2026-2027 season",
@@ -17,7 +18,8 @@
   },
   {
     "href": "https://www.youtube.com/watch?v=1FV8Z4ZVC18",
-    "img": "/data/slideshow/robot working.webp",
+    "iframe": "/robots/2026-artemis-ii/",
+    "img": "/data/slideshow/7A914DBF-B4A9-49F4-A532-381F5372D38D.webp",
     "alt": "ARTEMIS Robot",
     "header": "2026: ARTEMIS II",
     "description": "Check out our 2026 robot, Artemis II",
