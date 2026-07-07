@@ -116,6 +116,7 @@ window.addEventListener('DOMContentLoaded', function () {
     { text: 'Home', href: '/' },
     { text: 'Calendar', href: '/calendar' },
     { text: 'Gallery', href: '/gallery' },
+    { text: 'Awards', href: '/awards' },
     { text: 'Donations', href: '/donate' },
     { text: 'Links', href: '/links' },
     { text: 'Sponsor Form', href: '/data/sponsors/form.pdf' },

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Awards & Achievements - Perry RAMBOTS | High School FRC Team 6548</title>
+    <link rel="canonical" href="https://phsrambots.org" />
+<link rel="alternate" hreflang="en-US" href="https://phsrambots.org/" /><link rel="alternate" hreflang="x-default" href="https://phsrambots.org/" />
+<meta property="og:title" content="Awards & Achievements - Perry RAMBOTS | High School FRC Team 6548">
+    <meta property="og:description" content="Awards and achievements earned by Perry RAMBOTS, FRC Team 6548, from our 2017 rookie season through today.">
+    <meta property="og:image" content="https://phsrambots.org/data/icon-white.webp">
+    <meta property="og:url" content="https://phsrambots.org/awards">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Perry RAMBOTS">
+    <meta content="#ff4040" data-react-helmet="true" name="theme-color"/>
+
+    <link rel="icon" type="image/png" href="/data/icon.webp" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" href="/data/icon-white.webp" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" href="/data/icon-global.webp">
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <script src="/js/header.js"></script>
+    <div class="legacy-container">
+        <h1 class="superh1">Awards & Achievements</h1>
+        <div class="divider"></div>
+        <div class="awards-section">
+            <p class="awards-intro p-anim">From a historic 2017 rookie run at the FIRST World Championship to
+                recent district and state honors, here is a look at what Team 6548 has earned along the way.
+                Hover or tap a card for details, click it to see the source.</p>
+
+            <div id="awards-arch" class="awards-arch" role="list" aria-label="Team awards"></div>
+
+            <div id="award-modal" class="award-modal" role="dialog" aria-modal="true" aria-hidden="true">
+                <div class="award-modal-content">
+                    <button class="modal-close" id="award-modal-close" aria-label="Close">X</button>
+                    <div class="award-modal-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8 21h8"/><path d="M12 17v4"/>
+                            <path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/>
+                            <path d="M7 5H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4"/>
+                            <path d="M17 5h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"/>
+                        </svg>
+                    </div>
+                    <h3 id="award-modal-title"></h3>
+                    <span id="award-modal-sponsor" class="award-modal-sponsor"></span>
+                    <span id="award-modal-event" class="award-modal-event"></span>
+                    <p id="award-modal-details"></p>
+                    <a id="award-modal-link" class="award-modal-link" href="#">View on The Blue Alliance</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/awards.js"></script>
+</body>
+</html>
