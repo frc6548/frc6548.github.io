@@ -8,7 +8,8 @@
       "sponsor": "",
       "event": "2017 District Events",
       "details": "Recognized as the rookie team that best represents a model for other teams, showing determination and Gracious Professionalism in its first competitive season.",
-      "link": "https://www.thebluealliance.com/team/6548/2017"
+      "link": "https://www.thebluealliance.com/team/6548/2017",
+      "imageUrl": "/data/awards/medallion.webp"
     },
     {
       "id": "district-finalist-2019",
@@ -18,7 +19,8 @@
       "sponsor": "",
       "event": "2018 & 2019 District Events",
       "details": "Advanced to the finals as part of the alliance captain lineup at multiple district events, back to back seasons.",
-      "link": "https://www.thebluealliance.com/team/6548/2019"
+      "link": "https://www.thebluealliance.com/team/6548/2019",
+      "imageUrl": "/data/awards/medallion.webp"
     },
     {
       "id": "creativity-2017-worlds",
@@ -28,7 +30,8 @@
       "sponsor": "Sponsored by Xerox",
       "event": "2017 FIRST World Championship - St. Louis",
       "details": "Won during the team's historic rookie season on the global stage, recognizing an innovative approach to the game.",
-      "link": "https://www.thebluealliance.com/team/6548/2017"
+      "link": "https://www.thebluealliance.com/team/6548/2017",
+      "imageUrl": "/data/awards/trophy-championship.webp"
     },
     {
       "id": "autonomous-2025-state",
@@ -38,7 +41,8 @@
       "sponsor": "Sponsored by Ford",
       "event": "2025 FIM Michigan State Championship (Consumers Energy Division)",
       "details": "Celebrates a team with consistent, high-performing robot automation on the state championship stage.",
-      "link": "https://www.thebluealliance.com/team/6548/2025"
+      "link": "https://www.thebluealliance.com/team/6548/2025",
+      "imageUrl": "/data/awards/blue-banner.webp"
     },
     {
       "id": "creativity-2026-fenton",
@@ -48,7 +52,8 @@
       "sponsor": "",
       "event": "2026 FIM District Fenton Event",
       "details": "Recognizes a robot mechanism designed with resourceful, out-of-the-box thinking for this season's game.",
-      "link": "https://www.thebluealliance.com/team/6548/2026"
+      "link": "https://www.thebluealliance.com/team/6548/2026",
+      "imageUrl": "/data/awards/blue-banner.webp"
     },
     {
       "id": "sustainability-2024-2025",
@@ -58,7 +63,8 @@
       "sponsor": "",
       "event": "2024 Central Michigan & 2025 West Michigan Districts",
       "details": "Recognizes a team's creative and resourceful sustainable business, fundraising, and outreach practices across two district events.",
-      "link": "https://www.thebluealliance.com/team/6548/2025"
+      "link": "https://www.thebluealliance.com/team/6548/2025",
+      "imageUrl": "/data/awards/blue-banner.webp"
     },
     {
       "id": "judges-2025-stjoseph",
@@ -68,7 +74,8 @@
       "sponsor": "",
       "event": "2025 FIM District St. Joseph Event",
       "details": "A judges' discretion award given to a team that made a significant impact worthy of recognition outside the standard award categories.",
-      "link": "https://www.thebluealliance.com/team/6548/2025"
+      "link": "https://www.thebluealliance.com/team/6548/2025",
+      "imageUrl": "/data/awards/blue-banner.webp"
     }
   ]
 }

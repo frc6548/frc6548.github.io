@@ -2,15 +2,19 @@
 // row of cards (centerpieces anchored in the middle, larger), reveals
 // details on hover/focus, and opens a modal with the source link on click.
 (function () {
-  var TROPHY_SVG =
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
-    '<path d="M8 21h8"/><path d="M12 17v4"/>' +
-    '<path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/>' +
-    '<path d="M7 5H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4"/>' +
-    '<path d="M17 5h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"/>' +
-    '</svg>';
-
   function el(id) { return document.getElementById(id); }
+
+  function buildAwardImage(award) {
+    var wrap = document.createElement('div');
+    wrap.className = 'award-card-image-wrap';
+    var img = document.createElement('img');
+    img.className = 'award-card-image';
+    img.src = award.imageUrl;
+    img.alt = award.title + ' award';
+    img.loading = 'lazy';
+    wrap.appendChild(img);
+    return wrap;
+  }
 
   function buildCard(award, offset) {
     var isCenter = award.tier === 'center';
@@ -24,10 +28,6 @@
     var face = document.createElement('div');
     face.className = 'award-card-face';
 
-    var icon = document.createElement('div');
-    icon.className = 'award-icon';
-    icon.innerHTML = TROPHY_SVG;
-
     var title = document.createElement('p');
     title.className = 'award-card-title';
     title.textContent = award.title;
@@ -36,7 +36,7 @@
     year.className = 'award-card-year';
     year.textContent = award.event;
 
-    face.appendChild(icon);
+    face.appendChild(buildAwardImage(award));
     face.appendChild(title);
     face.appendChild(year);
 
@@ -61,6 +61,10 @@
   function openModal(award) {
     var modal = el('award-modal');
     if (!modal) return;
+
+    var iconWrap = el('award-modal-icon');
+    iconWrap.innerHTML = '';
+    iconWrap.appendChild(buildAwardImage(award));
 
     el('award-modal-title').textContent = award.title;
 
