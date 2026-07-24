@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <script src="/js/header.js"></script>
+    <script src="/js/header.js" defer></script>
     <script>
         window.addEventListener('DOMContentLoaded', function () {
             const photosId = document.getElementById('photos');
@@ -148,11 +148,17 @@
                 return card;
             }
 
-            fetch('https://api.github.com/repos/frc6548/phsrambots.org/contents/data/gallery')
-                .then(response => response.json())
+            // Prebuilt at deploy time (see .github/workflows/static.yml) so the page never
+            // has to hit the GitHub API's unauthenticated 60-req/hour rate limit at runtime.
+            fetch('/data/gallery/manifest.json', { cache: 'no-store' })
+                .then(response => {
+                    if (!response.ok) throw new Error('no-manifest');
+                    return response.json();
+                })
+                .catch(() => fetch('https://api.github.com/repos/frc6548/phsrambots.org/contents/data/gallery').then(r => r.json()))
                 .then(data => {
                     const files = Array.isArray(data)
-                        ? data.filter(file => file.type === 'file' && /\.(jpe?g|png|gif|webp)$/i.test(file.name))
+                        ? data.filter(file => (!file.type || file.type === 'file') && /\.(jpe?g|png|gif|webp)$/i.test(file.name))
                         : [];
 
                     if (!files.length) {

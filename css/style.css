@@ -867,57 +867,6 @@ a {
     transition: transform 2.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* iframe used as slide background — same parallax transform as .slideimage */
-.slidebg-wrap {
-    width: 100%;
-    height: 500px;
-    position: relative;
-    overflow: hidden;
-    filter: brightness(50%);
-    transform: scale(1.15) rotateY(var(--parallax-rot-y, 0deg)) rotateX(var(--parallax-rot-x, 0deg)) translate(var(--parallax-x, 0px), var(--parallax-y, 0px));
-    transition: transform 2.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Cover the wrap assuming 16:9 content */
-.slidebg-iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    min-width: calc(500px * 16 / 9);
-    transform: translate(-50%, -50%);
-    border: none;
-    pointer-events: none;
-}
-
-/* iframe used as transparent foreground — 3D content rendered over a bg image */
-.slidefg-wrap {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 500px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 1.4s ease;
-    z-index: 1;
-}
-
-.slidefg-wrap.loaded {
-    opacity: 1;
-}
-
-.slidefg-iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    pointer-events: none;
-}
-
 .slideforeground {
     position: absolute;
     left: 0;
@@ -2017,4 +1966,36 @@ a {
 .award-modal-link:hover {
     background: rgba(255, 211, 92, 0.28);
     box-shadow: 0 0 16px rgba(255, 211, 92, 0.35);
+}
+
+/* Respect OS-level motion preference: stop the purely decorative infinite/looping
+   animations, while leaving interactive UI motion (slideshow, parallax, hovers,
+   menu) untouched. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+    body {
+        animation: none !important;
+        background-color: #ff4040 !important;
+    }
+
+    .sponsorimages {
+        animation: none !important;
+    }
+
+    .status-card {
+        animation: none !important;
+    }
+
+    .status-live .status-dot {
+        animation: none !important;
+    }
+
+    .scroll-hidden {
+        opacity: 1 !important;
+        transform: none !important;
+    }
 }

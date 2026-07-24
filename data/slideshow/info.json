@@ -19,8 +19,8 @@
   },
   {
     "href": "https://www.youtube.com/watch?v=1FV8Z4ZVC18",
-    "iframe": "/robots/2026-artemis-ii/",
     "img": "/data/slideshow/realistic space.webp",
+    "fg": "/data/slideshow/realistic space fore.webp",
     "alt": "ARTEMIS Robot",
     "header": "2026: ARTEMIS II",
     "description": "Check out our 2026 robot, Artemis II",

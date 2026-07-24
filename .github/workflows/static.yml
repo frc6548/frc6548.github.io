@@ -6,6 +6,10 @@ on:
   push:
     branches: ["main"]
 
+  # Keep the gallery manifest (see below) fresh even when nothing is pushed
+  schedule:
+    - cron: "0 12 * * *"
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -31,6 +35,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Build gallery manifest
+        # Fetches the photo listing from the GitHub API server-side (at deploy time,
+        # authenticated, 5000 req/hour) so gallery/index.html only has to read a local
+        # JSON file at runtime instead of hitting the API's 60 req/hour anonymous limit.
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p data/gallery
+          if curl -sf -H "Authorization: Bearer $GH_TOKEN" \
+              "https://api.github.com/repos/frc6548/phsrambots.org/contents/data/gallery" \
+              -o /tmp/gallery-raw.json; then
+            jq '[.[] | select(.type=="file") | select(.name | test("\\.(jpe?g|png|gif|webp)$"; "i")) | {name: .name, download_url: .download_url}]' \
+              /tmp/gallery-raw.json > data/gallery/manifest.json
+          else
+            echo "Gallery API fetch failed; skipping manifest, page will fall back to the live API"
+          fi
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
