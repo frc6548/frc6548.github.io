@@ -1,0 +1,24 @@
+# Sends a Discord webhook recap whenever calendar events are added
+name: Notify new calendar events
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "data/calendar/**/events.json"
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    # Skip on branch creation, where "before" is the all-zero SHA and there's nothing to diff against
+    if: github.event.before != '0000000000000000000000000000000000000000'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Send Discord recap of new events
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          python3 scripts/notify_new_events.py "${{ github.event.before }}" "${{ github.event.after }}"
