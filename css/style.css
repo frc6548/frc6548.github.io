@@ -1982,8 +1982,10 @@ a {
         background-color: #ff4040 !important;
     }
 
+    /* Sponsor marquee keeps scrolling even with reduced motion enabled */
     .sponsorimages {
-        animation: none !important;
+        animation-duration: 30s !important;
+        animation-iteration-count: infinite !important;
     }
 
     .status-card {
