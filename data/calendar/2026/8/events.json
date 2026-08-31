@@ -19,5 +19,15 @@
     "address": "Perry High School",
     "map": "https://www.google.com/maps?sca_esv=e926bb0053f95734&rlz=1C1ONGR_enUS1139US1139&output=search&q=perry+high+school&source=lnms&fbs=ADc_l-aN0CWEZBOHjofHoaMMDiKpaEWjvZ2Py1XXV8d8KvlI3hg2cLua8k0b5ikl_6e-_EuCrJXF2omMOMbPtXIscilQlfTWJ4o6kRAc14Hx65kj5RE041e1qFN3cBDm91PRkIOJUMqlW4TDSQK7aOtODtHveWicH-qCAxHyWegcz7AcltgLBzEPuCnVjclgrz6ZE-iQ6Af91m5khPA3h2c9PF5Mc67XLw&entry=mc",
     "description": "Craft show at Perry High School."
+  },
+  {
+    "id": "Shiawassee-County-Fair",
+    "title": "Shiawassee County Fair",
+    "date": "2026-08-13",
+    "start": "09:00",
+    "end": "17:00",
+    "location": "2900 Hibbard Rd, Corunna, MI 48817",
+    "address": "2900 Hibbard Rd, Corunna, MI 48817",
+    "description": "Demo at shiawassee county fair mid august with other teams."
   }
 ]
