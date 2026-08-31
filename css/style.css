@@ -1127,8 +1127,8 @@ a {
 .slideoverlay {
     position: absolute;
     right: -250px;
-    top: -20px;
-    bottom: -20px;
+    top: -100px;
+    bottom: -100px;
     z-index: 2;
     width: calc(55% + 250px);
     background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.65));

@@ -70,6 +70,25 @@
     });
   }
 
+  // Computes the 42 (6-week) grid cells for a month: { dayIndex, dateStr } or
+  // { dayIndex: null } for leading/trailing blanks. Shared by the on-page
+  // calendar grid and the PDF export template.
+  function getMonthGridDays(year, month){
+    const first = new Date(year, month, 1);
+    const startDay = first.getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const days = [];
+    for(let i=0;i<42;i++){
+      const dayIndex = i - startDay + 1;
+      if(dayIndex > 0 && dayIndex <= daysInMonth){
+        days.push({ dayIndex, dateStr: `${year}-${pad(month+1)}-${pad(dayIndex)}` });
+      } else {
+        days.push({ dayIndex: null, dateStr: null });
+      }
+    }
+    return days;
+  }
+
   function renderCalendar(){
     const grid = el('calendar-grid');
     grid.innerHTML = '';
@@ -86,23 +105,16 @@
     });
     grid.appendChild(headerRow);
 
-    const first = new Date(state.year, state.month, 1);
-    const startDay = first.getDay();
-    const daysInMonth = new Date(state.year, state.month + 1, 0).getDate();
-
     // Create day cells (leading blanks included)
     const cells = document.createElement('div');
     cells.className = 'cal-cells';
 
-    // total cells 42 (6 weeks)
-    const total = 42;
-    for(let i=0;i<total;i++){
+    getMonthGridDays(state.year, state.month).forEach(day => {
       const cell = document.createElement('div');
       cell.className = 'cal-cell';
-      const dayIndex = i - startDay + 1;
-      if(dayIndex > 0 && dayIndex <= daysInMonth){
-        const dateStr = `${state.year}-${pad(state.month+1)}-${pad(dayIndex)}`;
-        const num = document.createElement('div'); num.className='cal-date'; num.textContent = dayIndex;
+      if(day.dayIndex){
+        const dateStr = day.dateStr;
+        const num = document.createElement('div'); num.className='cal-date'; num.textContent = day.dayIndex;
         cell.appendChild(num);
 
         const events = state.eventsByDate[dateStr] || [];
@@ -132,7 +144,7 @@
         cell.classList.add('cal-empty');
       }
       cells.appendChild(cell);
-    }
+    });
 
     grid.appendChild(cells);
   }
@@ -285,6 +297,88 @@
 
     el('modal-close').addEventListener('click', closeModal);
     el('event-modal').addEventListener('click', (e)=>{ if(e.target === e.currentTarget) closeModal(); });
+
+    el('export-pdf').addEventListener('click', exportToPdf);
+  }
+
+  // Builds a full calendar-grid PDF export using calendar-export.html as the
+  // visual template (see that file for the layout/CSS, which can be edited
+  // independently of this logic).
+  async function exportToPdf(){
+    const btn = el('export-pdf');
+    const originalLabel = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Preparing...';
+
+    // Open the tab synchronously (within the click handler) so browsers
+    // don't treat it as a blocked popup once the fetch below resolves.
+    const win = window.open('', '_blank');
+    if(!win){
+      alert('Please allow popups for this site to export the calendar as a PDF.');
+      btn.disabled = false;
+      btn.textContent = originalLabel;
+      return;
+    }
+
+    try{
+      const res = await fetch('/calendar/calendar-export.html');
+      const html = await res.text();
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+
+      const demoScript = doc.getElementById('cal-export-demo-script');
+      if(demoScript) demoScript.remove();
+
+      const titleEl = doc.getElementById('cal-export-title');
+      if(titleEl) titleEl.textContent = `${monthNames[state.month]} ${state.year}`;
+
+      const generatedEl = doc.getElementById('cal-export-generated');
+      if(generatedEl) generatedEl.textContent = new Date().toLocaleDateString();
+
+      const cellsWrap = doc.getElementById('cal-export-cells');
+      const cellTpl = doc.getElementById('cal-export-cell-template');
+      if(cellsWrap && cellTpl){
+        getMonthGridDays(state.year, state.month).forEach(day => {
+          const frag = cellTpl.content.cloneNode(true);
+          const cellEl = frag.querySelector('.cal-export-cell');
+          if(day.dayIndex){
+            cellEl.querySelector('.cal-export-daynum').textContent = day.dayIndex;
+            const evWrap = cellEl.querySelector('.cal-export-events');
+            const events = state.eventsByDate[day.dateStr] || [];
+            events.forEach(ev => {
+              const d = doc.createElement('div');
+              d.className = 'cal-export-event';
+              const time = formatEventShortTime(day.dateStr, ev);
+              if(time){
+                const t = doc.createElement('span');
+                t.className = 'cal-export-event-time';
+                t.textContent = time;
+                d.appendChild(t);
+              }
+              d.appendChild(doc.createTextNode(ev.title || 'Untitled event'));
+              evWrap.appendChild(d);
+            });
+          } else {
+            cellEl.classList.add('is-empty');
+          }
+          cellsWrap.appendChild(frag);
+        });
+      }
+
+      win.document.open();
+      win.document.write('<!DOCTYPE html>' + doc.documentElement.outerHTML);
+      win.document.close();
+
+      let printed = false;
+      const doPrint = () => { if(printed) return; printed = true; win.focus(); win.print(); };
+      win.addEventListener('load', doPrint);
+      setTimeout(doPrint, 700);
+    }catch(e){
+      win.close();
+      alert('Could not prepare the PDF export. Please try again.');
+    }finally{
+      btn.disabled = false;
+      btn.textContent = originalLabel;
+    }
   }
 
   async function init(){
